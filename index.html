@@ -1,0 +1,8476 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Don't Click</title>
+
+
+    <style>
+        /* ============================= */
+/* FULLSCREEN INTRO SCREEN */
+/* ============================= */
+
+.fullscreen-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    background: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    color: white;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.fullscreen-intro.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* LOGO */
+
+.fullscreen-logo {
+    width: 90px;
+    height: 90px;
+
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 42px;
+
+    margin-bottom: 30px;
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    background:
+        radial-gradient(
+            circle,
+            #252525,
+            #080808
+        );
+
+    box-shadow:
+        0 0 35px rgba(255,255,255,.08);
+}
+
+
+/* FULLSCREEN BUTTON */
+
+.fullscreen-start {
+    padding: 14px 32px;
+
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.05);
+
+    color: white;
+
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        transform .3s ease;
+}
+
+.fullscreen-start:hover {
+    background: white;
+    color: black;
+
+    transform: scale(1.06);
+}
+
+
+/* ============================= */
+/* ROTATE SCREEN */
+/* ============================= */
+
+.rotate-screen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 900;
+
+    background: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    color: white;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+.rotate-screen.show {
+    opacity: 1;
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* PHONE */
+
+.rotate-phone {
+    width: 80px;
+    height: 145px;
+
+    border: 4px solid white;
+
+    border-radius: 16px;
+
+    position: relative;
+
+    animation:
+        phoneRotate
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* PHONE SCREEN */
+
+.rotate-phone::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #202020,
+            #080808
+        );
+}
+
+
+/* PHONE CAMERA / SPEAKER */
+
+.rotate-phone::after {
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 4px;
+
+    background: #555;
+
+    border-radius: 5px;
+
+    top: 5px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+@keyframes phoneRotate {
+
+    0% {
+        transform:
+            rotate(0deg)
+            scale(1);
+    }
+
+    35% {
+        transform:
+            rotate(0deg)
+            scale(1.05);
+    }
+
+    70% {
+        transform:
+            rotate(90deg)
+            scale(1.08);
+    }
+
+    100% {
+        transform:
+            rotate(90deg)
+            scale(1);
+    }
+}
+
+
+/* ROTATE TEXT */
+
+.rotate-text {
+    margin-top: 35px;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,.75);
+}
+
+
+/* TAP MESSAGE */
+
+.rotate-tap {
+    margin-top: 15px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,.35);
+}
+
+
+/* MOBILE */
+
+
+/* =================================================
+   FINAL POLISH — KHAIR / QUESTION / TIMELINE
+================================================= */
+#finalScreen {
+    background: #000 !important;
+    overflow: hidden;
+}
+
+#finalScreen::before,
+#finalScreen::after {
+    content: "♡";
+    position: absolute;
+    color: rgba(255,225,232,.20);
+    pointer-events: none;
+    animation: khairSoftFloat 7s ease-in-out infinite alternate;
+}
+
+#finalScreen::before {
+    left: 12%;
+    top: 18%;
+    font-size: 58px;
+    transform: rotate(-10deg);
+}
+
+#finalScreen::after {
+    right: 12%;
+    bottom: 20%;
+    font-size: 44px;
+    animation-delay: 1.8s;
+}
+
+@keyframes khairSoftFloat {
+    from {
+        opacity: .18;
+        transform: translateY(7px) scale(.94) rotate(-7deg);
+    }
+    to {
+        opacity: .48;
+        transform: translateY(-10px) scale(1.04) rotate(7deg);
+    }
+}
+.final-word{
+    font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif!important;
+    letter-spacing:2px!important;
+    text-shadow:0 0 12px rgba(255,160,185,.18),0 10px 35px rgba(0,0,0,.35)!important;
+}
+.song-question-text{
+    font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif!important;
+    letter-spacing:2.5px!important;
+    text-shadow:0 8px 30px rgba(0,0,0,.28);
+}
+.song-question-text strong{
+    font-family:"Playfair Display",Georgia,"Times New Roman",serif!important;
+    font-style:italic;letter-spacing:3px!important;
+}
+.song-question-next{
+    position:absolute;bottom:8%;left:50%;transform:translateX(-50%) translateY(12px);
+    padding:13px 31px;border:1px solid rgba(255,255,255,.48);border-radius:999px;
+    background:rgba(255,255,255,.10);backdrop-filter:blur(12px);
+    color:#fff;font-family:"Playfair Display",Georgia,serif;font-size:11px;
+    letter-spacing:3px;cursor:pointer;opacity:0;pointer-events:none;
+    transition:.35s ease;box-shadow:0 8px 30px rgba(0,0,0,.20);
+}
+#songQuestionScreen.show .song-question-next{
+    animation:songNextIn .8s ease 3.8s forwards;
+}
+.song-question-next span{margin-left:8px;font-size:15px}
+.song-question-next:hover{
+    background:rgba(255,255,255,.19);
+    box-shadow:0 0 28px rgba(255,150,190,.28);
+    transform:translateX(-50%) translateY(-2px);
+}
+@keyframes songNextIn{
+    to{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+}
+.song-timeline{
+    width:min(72vw,470px);margin-top:16px;display:flex;align-items:center;gap:10px;
+    color:rgba(255,240,245,.82);font-family:"Playfair Display",Georgia,serif;
+    font-size:10px;letter-spacing:1px;opacity:0;transform:translateY(8px);
+}
+#girlSongScreen.show .song-timeline{animation:timelineIn .8s ease 1.15s forwards}
+@keyframes timelineIn{to{opacity:1;transform:translateY(0)}}
+.song-progress-wrap{
+    position:relative;flex:1;height:5px;border-radius:999px;
+    background:rgba(255,255,255,.20);overflow:visible;
+}
+.song-progress{
+    position:relative;width:0%;height:100%;border-radius:999px;
+    background:linear-gradient(90deg,#ffd3df,#ff6e99);
+    box-shadow:0 0 12px rgba(255,110,153,.45);transition:width .15s linear;
+}
+.song-progress::after{
+    content:"";position:absolute;right:-5px;top:50%;width:10px;height:10px;
+    border-radius:50%;transform:translateY(-50%);background:#fff;
+    box-shadow:0 0 12px rgba(255,180,200,.8);
+}
+.girl-song-caption{
+    font-family:"Cormorant Garamond",Georgia,serif!important;
+    font-size:13px!important;letter-spacing:3px!important;
+}
+.girl-next-button{font-family:"Playfair Display",Georgia,serif!important}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+@media (max-width: 600px) {
+
+    .fullscreen-logo {
+        width: 80px;
+        height: 80px;
+        font-size: 36px;
+    }
+
+    .fullscreen-start {
+        padding: 13px 28px;
+    }
+
+}
+
+
+
+
+        /* =========================================
+           BASIC
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+        }
+
+
+        /* =========================================
+           SCREEN 1 — WARNING PAGE
+        ========================================= */
+
+        .warning-page {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100dvh;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 100;
+            opacity: 1;
+            visibility: visible;
+
+            transition:
+                opacity 2s cubic-bezier(.65,0,.35,1),
+                transform 2.2s cubic-bezier(.65,0,.35,1),
+                filter 2s ease,
+                visibility 2s;
+        }
+
+
+        .warning-page.hide {
+            opacity: 0;
+            transform: scale(1.06);
+            filter: blur(8px);
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
+        .warning-content {
+            width: 90%;
+            max-width: 500px;
+
+            animation:
+                warningAppear
+                1.4s
+                cubic-bezier(.16,1,.3,1);
+        }
+
+
+        .warning-icon {
+            font-size: 40px;
+            margin-bottom: 25px;
+            display: inline-block;
+
+            animation:
+                headphoneFloat
+                3s
+                ease-in-out
+                infinite;
+        }
+
+
+        .warning-small {
+            color:
+                rgba(255,255,255,.4);
+
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+
+        .warning-title {
+            color: white;
+
+            font-size:
+                clamp(30px,5vw,55px);
+
+            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+        }
+
+
+        .warning-text {
+            color:
+                rgba(255,255,255,.55);
+
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           I'M READY BUTTON
+        ========================================= */
+
+        .continue-button {
+            margin-top: 32px;
+            padding: 14px 30px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.25);
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,.06);
+
+            color: white;
+            font-size: 10px;
+            letter-spacing: 3px;
+            cursor: pointer;
+
+            transition:
+                transform .35s ease,
+                background .35s ease,
+                border-color .35s ease;
+        }
+
+
+        .continue-button:hover {
+            background:
+                rgba(255,255,255,.13);
+
+            border-color:
+                rgba(255,255,255,.45);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .continue-button:active {
+            transform:
+                scale(.94);
+        }
+
+
+        /* =========================================
+           WARNING ANIMATION
+        ========================================= */
+
+        @keyframes warningAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(35px)
+                    scale(.96);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        @keyframes headphoneFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-7px);
+            }
+        }
+
+
+        /* =========================================
+           SCREEN 2 — VIDEO PAGE
+        ========================================= */
+
+        .video-page {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100dvh;
+            background: #000;
+            overflow: hidden;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform:
+                scale(1.035);
+
+            transition:
+                opacity 2.4s cubic-bezier(.65,0,.35,1),
+                transform 2.8s cubic-bezier(.16,1,.3,1),
+                visibility 2.4s;
+        }
+
+
+        .video-page.show {
+            opacity: 1;
+            visibility: visible;
+
+            transform:
+                scale(1);
+        }
+
+
+        /* =========================================
+           BACKGROUND VIDEO
+        ========================================= */
+
+        .background-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            background: #000;
+
+            opacity: 0;
+
+            transform:
+                scale(1.10);
+
+            filter:
+                brightness(.72)
+                contrast(1.06)
+                saturate(1.05);
+
+            transition:
+                opacity 2.6s ease,
+                transform 5s cubic-bezier(.16,1,.3,1);
+        }
+
+
+        .background-video.loaded {
+            opacity: 1;
+
+            transform:
+                scale(1);
+        }
+
+
+        /* =========================================
+           VIDEO OVERLAY
+        ========================================= */
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    transparent 35%,
+                    rgba(0,0,0,.30)
+                );
+        }
+
+
+        /* =========================================
+           LOADER
+        ========================================= */
+
+        .loader {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+
+            background: #000;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 1;
+            visibility: visible;
+
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
+        }
+
+
+        .loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+
+        .loader-circle {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            border-top-color: white;
+
+            animation:
+                spin
+                1.2s
+                linear
+                infinite;
+
+            margin-bottom: 18px;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+        }
+
+
+        .loader-text {
+            color:
+                rgba(255,255,255,.35);
+
+            font-size: 9px;
+            letter-spacing: 4px;
+        }
+
+
+        /* =========================================
+           BUTTON AREA
+        ========================================= */
+
+        .button-area {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           CREATIVE CROWN
+        ========================================= */
+
+        .question-crown {
+            position: absolute;
+
+            left: 50%;
+
+            top:
+                calc(50% - 91px);
+
+            width: 72px;
+            height: 72px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 15;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+
+            animation:
+                crownDrop
+                2.2s
+                cubic-bezier(.16,1,.3,1)
+                1.05s
+                forwards;
+        }
+
+
+        /* =========================================
+           CROWN SHAPE
+        ========================================= */
+
+        .crown-shape {
+            position: relative;
+
+            width: 44px;
+            height: 31px;
+
+            background:
+                rgba(255,255,255,.96);
+
+            clip-path:
+                polygon(
+                    0 0,
+                    19% 42%,
+                    34% 7%,
+                    50% 43%,
+                    67% 7%,
+                    82% 42%,
+                    100% 0,
+                    91% 100%,
+                    9% 100%
+                );
+
+            filter:
+                drop-shadow(
+                    0 5px 10px
+                    rgba(0,0,0,.35)
+                );
+
+            animation:
+                crownFloat
+                3s
+                ease-in-out
+                3.2s
+                infinite;
+        }
+
+
+        .crown-shape::after {
+            content: "";
+
+            position: absolute;
+
+            left: 8px;
+            right: 8px;
+            bottom: 5px;
+
+            height: 2px;
+
+            background:
+                rgba(0,0,0,.13);
+
+            border-radius: 20px;
+        }
+
+
+        /* =========================================
+           QUESTION MARK
+        ========================================= */
+
+        .question-mark {
+            position: absolute;
+
+            left: 50%;
+            top: 40px;
+
+            transform:
+                translateX(-50%)
+                scale(0);
+
+            color: white;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1;
+
+            text-shadow:
+                0 3px 12px
+                rgba(0,0,0,.5);
+
+            animation:
+                questionReveal
+                .7s
+                cubic-bezier(.16,1,.3,1)
+                2.25s
+                forwards;
+        }
+
+
+        /* =========================================
+           SPARKLES
+        ========================================= */
+
+        .question-crown::before,
+        .question-crown::after {
+
+            position: absolute;
+
+            color: white;
+            font-size: 11px;
+            opacity: 0;
+
+            animation:
+                sparkleAppear
+                1s
+                ease
+                2.1s
+                forwards;
+        }
+
+
+        .question-crown::before {
+            content: "✦";
+
+            left: 3px;
+            top: 18px;
+
+            transform:
+                rotate(-15deg);
+        }
+
+
+        .question-crown::after {
+            content: "✧";
+
+            right: 2px;
+            top: 8px;
+
+            transform:
+                rotate(15deg);
+        }
+
+
+        /* =========================================
+           CROWN DROP
+        ========================================= */
+
+        @keyframes crownDrop {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translate(-50%,-42vh)
+                    rotate(-18deg)
+                    scale(.45);
+            }
+
+
+            45% {
+                opacity: 1;
+            }
+
+
+            68% {
+                transform:
+                    translate(-50%,8px)
+                    rotate(8deg)
+                    scale(1.08);
+            }
+
+
+            80% {
+                transform:
+                    translate(-50%,-5px)
+                    rotate(-5deg)
+                    scale(.96);
+            }
+
+
+            90% {
+                transform:
+                    translate(-50%,2px)
+                    rotate(2deg)
+                    scale(1.02);
+            }
+
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translate(-50%,0)
+                    rotate(0)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================================
+           CROWN FLOAT
+        ========================================= */
+
+        @keyframes crownFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+
+            50% {
+                transform:
+                    translateY(-5px)
+                    rotate(2deg);
+            }
+        }
+
+
+        /* =========================================
+           QUESTION REVEAL
+        ========================================= */
+
+        @keyframes questionReveal {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translateX(-50%)
+                    translateY(-8px)
+                    scale(0);
+            }
+
+
+            65% {
+                opacity: 1;
+
+                transform:
+                    translateX(-50%)
+                    translateY(2px)
+                    scale(1.15);
+            }
+
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translateX(-50%)
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================================
+           SPARKLE ANIMATION
+        ========================================= */
+
+        @keyframes sparkleAppear {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    scale(0)
+                    rotate(0);
+            }
+
+
+            50% {
+                opacity: 1;
+
+                transform:
+                    scale(1.3)
+                    rotate(25deg);
+            }
+
+
+            100% {
+                opacity: .65;
+
+                transform:
+                    scale(1)
+                    rotate(45deg);
+            }
+        }
+
+
+        /* =========================================
+           DON'T CLICK BUTTON
+        ========================================= */
+
+        .dont-click {
+            position: relative;
+
+            width: 215px;
+            height: 62px;
+
+            border: none;
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.94);
+
+            color: #181818;
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+
+            cursor: pointer;
+            pointer-events: auto;
+
+            opacity: 0;
+
+            transform:
+                translate(-48vw,-38vh)
+                rotate(-10deg)
+                scale(.75);
+
+            animation:
+                cuteButtonIn
+                2.6s
+                cubic-bezier(.16,1,.3,1)
+                1.2s
+                forwards;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,.28);
+
+            transition:
+                transform .4s ease,
+                box-shadow .4s ease,
+                background .4s ease;
+        }
+
+
+        .dont-click::before {
+            content: "✦";
+
+            position: absolute;
+
+            top: -11px;
+            right: 20px;
+
+            color: white;
+            font-size: 14px;
+            opacity: .8;
+
+            animation:
+                buttonSparkle
+                2.5s
+                ease-in-out
+                infinite;
+        }
+
+
+        .dont-click::after {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            bottom: -8px;
+
+            width: 65%;
+            height: 10px;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                rgba(0,0,0,.22);
+
+            filter:
+                blur(9px);
+
+            border-radius: 50%;
+
+            z-index: -1;
+        }
+
+
+        /* =========================================
+           BUTTON ENTRANCE
+        ========================================= */
+
+        @keyframes cuteButtonIn {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translate(-48vw,-38vh)
+                    rotate(-10deg)
+                    scale(.75);
+            }
+
+
+            45% {
+                opacity: 1;
+            }
+
+
+            70% {
+                transform:
+                    translate(10px,-5px)
+                    rotate(2deg)
+                    scale(1.04);
+            }
+
+
+            84% {
+                transform:
+                    translate(-4px,2px)
+                    rotate(-1deg)
+                    scale(.99);
+            }
+
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translate(0,0)
+                    rotate(0)
+                    scale(1);
+            }
+        }
+
+
+        @keyframes buttonSparkle {
+
+            0%,
+            100% {
+                transform:
+                    scale(.7)
+                    rotate(0deg);
+
+                opacity: .3;
+            }
+
+
+            50% {
+                transform:
+                    scale(1.15)
+                    rotate(15deg);
+
+                opacity: 1;
+            }
+        }
+
+
+        .dont-click:hover {
+            background: white;
+
+            transform:
+                translateY(-5px)
+                scale(1.04);
+
+            box-shadow:
+                0 20px 48px
+                rgba(0,0,0,.35);
+        }
+
+
+        .dont-click:active {
+            transform:
+                scale(.94);
+        }
+
+
+        /* =========================================
+           VIDEO EXIT
+        ========================================= */
+
+        .video-page.exit {
+            opacity: 0;
+
+            transform:
+                scale(1.06);
+
+            transition:
+                opacity 1.5s ease,
+                transform 1.7s cubic-bezier(.65,0,.35,1);
+        }
+
+
+        /* ==================================================
+           SCREEN 3 — IMAGE GALLERY
+        ================================================== */
+
+        .image-page {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100dvh;
+
+           background:
+    radial-gradient(circle at 15% 20%, rgba(255, 190, 220, .75), transparent 28%),
+    radial-gradient(circle at 85% 25%, rgba(190, 220, 255, .75), transparent 30%),
+    radial-gradient(circle at 20% 85%, rgba(215, 195, 255, .70), transparent 28%),
+    radial-gradient(circle at 85% 85%, rgba(190, 245, 220, .65), transparent 30%),
+    linear-gradient(135deg, #fff7fb, #f3efff, #eef8ff);
+
+            z-index: 60;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform:
+                scale(1.04);
+
+            transition:
+                opacity 1.5s ease,
+                transform 1.5s ease,
+                visibility 1.5s;
+        }
+
+
+        .image-page.show {
+            opacity: 1;
+            visibility: visible;
+
+            transform:
+                scale(1);
+        }
+
+
+        /* =========================================
+           IMAGE CONTAINER
+        ========================================= */
+
+        .image-container {
+            position: relative;
+
+            width: min(78vw, 850px);
+            height: min(72vh, 650px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            touch-action: pan-y;
+        }
+
+
+        /* =========================================
+           GALLERY IMAGE
+        ========================================= */
+
+        .gallery-image {
+            max-width: 100%;
+            max-height: 100%;
+
+            width: auto;
+            height: auto;
+
+            object-fit: contain;
+
+            border-radius: 18px;
+
+            opacity: 0;
+
+            transform:
+                scale(.94);
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
+
+            user-select: none;
+
+            -webkit-user-drag: none;
+            border: 5px solid #ffffff;
+
+box-shadow:
+    0 0 0 4px #ff9fca,
+    0 0 0 8px #b9a7ff,
+    0 12px 40px rgba(130,100,180,.30);
+        }
+
+
+        .gallery-image.show-image {
+            opacity: 1;
+
+            transform:
+                scale(1);
+        }
+
+
+        /* =========================================
+           CUTE RIGHT ARROW
+        ========================================= */
+
+        .next-button {
+            position: absolute;
+
+            right: -75px;
+            top: 50%;
+
+            width: 56px;
+            height: 56px;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+            border-radius: 50%;
+
+            background:
+    linear-gradient(135deg, #ff9fca, #b9a7ff);
+
+color: #ffffff;
+
+            font-size: 30px;
+            line-height: 1;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+            box-shadow:
+    0 8px 25px rgba(180,120,190,.35);
+
+           
+            transition:
+                transform .3s ease,
+                background .3s ease,
+                box-shadow .3s ease;
+
+            -webkit-tap-highlight-color: transparent;
+
+            touch-action: manipulation;
+
+            animation:
+                arrowCute
+                1.8s
+                ease-in-out
+                infinite;
+        }
+
+
+        .next-button:hover {
+            transform:
+                translateY(-50%)
+                scale(1.12);
+
+            background: white;
+
+            box-shadow:
+                0 14px 35px
+                rgba(0,0,0,.5);
+
+            animation: none;
+        }
+
+
+        .next-button:active {
+            transform:
+                translateY(-50%)
+                scale(.88);
+        }
+
+
+        /* =========================================
+           ARROW CUTE ANIMATION
+        ========================================= */
+
+        @keyframes arrowCute {
+
+            0%,
+            100% {
+                transform:
+                    translateY(-50%)
+                    translateX(0);
+            }
+
+
+            50% {
+                transform:
+                    translateY(-50%)
+                    translateX(5px);
+            }
+        }
+
+
+        /* =========================================
+           IMAGE CAPTION / INSTRUCTION
+        ========================================= */
+
+        .image-caption {
+            margin-top: 18px;
+
+            color: #5b416b !important;
+font-weight: 700;
+
+background: rgba(255,255,255,.92);
+
+padding: 9px 18px;
+
+border-radius: 20px;
+
+box-shadow:
+    0 5px 18px rgba(150,100,170,.18);
+
+            font-size: 11px;
+
+            letter-spacing: 1.5px;
+
+            text-align: center;
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+            transition:
+                opacity .4s ease,
+                transform .4s ease;
+
+            min-height: 18px;
+        }
+
+
+        .image-caption.hide-caption {
+            opacity: 0;
+
+            transform:
+                translateY(8px);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           OBSERVED THING BUTTON
+        ========================================= */
+
+        .observed-button {
+            margin-top: 25px;
+
+            padding: 14px 32px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.3);
+
+            border-radius: 50px;
+
+            background: #22c55e;
+
+            color: white;
+
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            transform:
+                translateY(15px);
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease,
+                background .3s ease,
+                visibility .7s;
+        }
+
+
+        .observed-button.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+
+            transform:
+                translateY(0);
+        }
+
+
+        .observed-button:hover {
+            background:
+                rgba(255,255,255,.17);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .observed-button:active {
+            transform:
+                scale(.94);
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width:600px) {
+
+            .warning-icon {
+                font-size: 35px;
+            }
+
+
+            .warning-title {
+                font-size: 30px;
+            }
+
+
+            .warning-text {
+                font-size: 13px;
+            }
+
+
+            .dont-click {
+                width: 190px;
+                height: 58px;
+
+                border-radius: 17px;
+
+                font-size: 10px;
+                letter-spacing: 2.5px;
+            }
+
+
+            .question-crown {
+                top:
+                    calc(50% - 84px);
+            }
+
+
+            .crown-shape {
+                width: 41px;
+                height: 29px;
+            }
+
+
+            .question-mark {
+                font-size: 17px;
+            }
+
+
+            /* IMAGE PAGE MOBILE */
+
+            .image-container {
+                width: 82vw;
+                height: 65vh;
+            }
+
+
+            .gallery-image {
+                max-width: 100%;
+                max-height: 100%;
+
+                border-radius: 12px;
+            }
+
+
+            .next-button {
+                right: -18px;
+
+                width: 50px;
+                height: 50px;
+
+                font-size: 26px;
+            }
+
+
+            .image-caption {
+                margin-top: 14px;
+
+                font-size: 10px;
+
+                letter-spacing: 1px;
+            }
+
+
+            .observed-button {
+                margin-top: 18px;
+
+                padding: 13px 27px;
+
+                font-size: 10px;
+            }
+
+        }
+
+
+        /* =========================================
+           SMALL HEIGHT
+        ========================================= */
+
+        @media (max-height:650px) {
+
+            .warning-icon {
+                margin-bottom: 15px;
+            }
+
+
+            .continue-button {
+                margin-top: 20px;
+            }
+
+
+            .image-container {
+                height: 62vh;
+            }
+
+        }
+
+
+
+
+        /* screen 4  */
+        /* =========================================================
+
+        /* ================================================= */
+/* SCREEN 4 — RESPONSIVE LANDSCAPE GAME */
+/* ================================================= */
+
+.game-page {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100dvh;
+
+    z-index: 80;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    background:
+    radial-gradient(circle at 20% 20%, rgba(255, 105, 180, 0.729), transparent 30%),
+    radial-gradient(circle at 80% 25%, rgba(100, 180, 255, .35), transparent 30%),
+    radial-gradient(circle at 25% 80%, rgba(170, 100, 255, .30), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(80, 230, 190, .25), transparent 30%),
+    linear-gradient(135deg, #160d2b, #24104a, #101b3d);
+
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.game-page.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Soft background glow */
+
+.game-page::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,255,255,.05),
+            transparent 60%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ================================================= */
+/* WORD PATH */
+/* ================================================= */
+
+.communication {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 94vw;
+    max-width: 1100px;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: clamp(6px, 1.5vw, 22px);
+
+    white-space: nowrap;
+
+    z-index: 3;
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.communication.hide {
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.88);
+}
+
+
+/* WORD */
+
+.path-word {
+    color: rgba(255,255,255,.92);
+
+    font-size:
+        clamp(
+            13px,
+            2.5vw,
+            30px
+        );
+
+    font-weight: 500;
+
+    letter-spacing:
+        clamp(
+            1px,
+            .25vw,
+            3px
+        );
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    animation:
+        wordAppear
+        .7s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+
+/* WORD DELAYS */
+
+.path-word:nth-of-type(1) {
+    animation-delay: .2s;
+}
+
+.path-word:nth-of-type(2) {
+    animation-delay: 1.1s;
+}
+
+.path-word:nth-of-type(3) {
+    animation-delay: 2s;
+}
+
+.path-word:nth-of-type(4) {
+    animation-delay: 2.9s;
+}
+
+.path-word:nth-of-type(5) {
+    animation-delay: 3.8s;
+}
+
+
+@keyframes wordAppear {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* ARROWS */
+
+.path-arrow {
+    color: rgba(255,255,255,.35);
+
+    font-size:
+        clamp(
+            12px,
+            2vw,
+            22px
+        );
+
+    opacity: 0;
+
+    animation:
+        arrowAppear
+        .5s
+        ease
+        forwards;
+}
+
+.path-arrow:nth-of-type(1) {
+    animation-delay: .55s;
+}
+
+.path-arrow:nth-of-type(2) {
+    animation-delay: 1.45s;
+}
+
+.path-arrow:nth-of-type(3) {
+    animation-delay: 2.35s;
+}
+
+.path-arrow:nth-of-type(4) {
+    animation-delay: 3.25s;
+}
+
+
+@keyframes arrowAppear {
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ================================================= */
+/* DOTTED PATH */
+/* ================================================= */
+
+.jump-path {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 4;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity .7s ease;
+}
+
+.jump-path.show {
+    opacity: 1;
+}
+
+.jump-path path {
+    fill: none;
+
+    stroke:
+        rgba(255,255,255,.78);
+
+    stroke-width:
+        clamp(2px, .3vw, 3px);
+
+    stroke-linecap: round;
+
+    stroke-dasharray:
+        3 13;
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(255,255,255,.25)
+        );
+
+    animation:
+        dottedMove
+        1.2s
+        linear
+        infinite;
+}
+
+@keyframes dottedMove {
+
+    to {
+        stroke-dashoffset: -32;
+    }
+}
+
+
+/* ================================================= */
+/* PRIYANSHU */
+/* ================================================= */
+
+.priyanshu {
+    position: absolute;
+
+    left: -100px;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 10;
+
+    opacity: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    pointer-events: none;
+}
+
+.priyanshu.show {
+    opacity: 1;
+}
+
+
+/* WALK */
+
+.priyanshu.walk {
+    animation:
+        walkAcross
+        6s
+        cubic-bezier(.25,.7,.3,1)
+        forwards;
+}
+
+
+@keyframes walkAcross {
+
+    0% {
+        left: -80px;
+        top: 65%;
+    }
+
+    20% {
+        left: 8%;
+        top: 60%;
+    }
+
+    40% {
+        left: 15%;
+        top: 56%;
+    }
+
+    60% {
+        left: 21%;
+        top: 53%;
+    }
+
+    80% {
+        left: 25%;
+        top: 51%;
+    }
+
+    100% {
+        left: 28%;
+        top: 50%;
+    }
+}
+
+
+/* ================================================= */
+/* CHARACTER */
+/* ================================================= */
+
+.character {
+    position: relative;
+
+    width: 42px;
+    height: 80px;
+
+    animation:
+        bodyWalk
+        .55s
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes bodyWalk {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(-1deg);
+    }
+
+    to {
+        transform:
+            translateY(-3px)
+            rotate(1deg);
+    }
+}
+
+
+/* HEAD */
+
+.character-head {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 25px;
+    height: 25px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #e9e9e9;
+}
+
+
+/* BODY */
+
+.character-body {
+    position: absolute;
+
+    left: 50%;
+    top: 24px;
+
+    width: 25px;
+    height: 32px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        7px 7px 5px 5px;
+
+    background: #d7d7d7;
+}
+
+
+/* ARMS */
+
+.character-arm {
+    position: absolute;
+
+    top: 28px;
+
+    width: 6px;
+    height: 26px;
+
+    border-radius: 8px;
+
+    background: #bdbdbd;
+
+    transform-origin:
+        top center;
+}
+
+.arm-left {
+    left: 7px;
+
+    animation:
+        armLeft
+        .55s
+        ease-in-out
+        infinite alternate;
+}
+
+.arm-right {
+    right: 7px;
+
+    animation:
+        armRight
+        .55s
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes armLeft {
+
+    from {
+        transform: rotate(25deg);
+    }
+
+    to {
+        transform: rotate(-20deg);
+    }
+}
+
+
+@keyframes armRight {
+
+    from {
+        transform: rotate(-25deg);
+    }
+
+    to {
+        transform: rotate(20deg);
+    }
+}
+
+
+/* LEGS */
+
+.character-leg {
+    position: absolute;
+
+    top: 53px;
+
+    width: 7px;
+    height: 27px;
+
+    border-radius: 8px;
+
+    background: #aaaaaa;
+
+    transform-origin:
+        top center;
+}
+
+.leg-left {
+    left: 11px;
+
+    animation:
+        legLeft
+        .55s
+        ease-in-out
+        infinite alternate;
+}
+
+.leg-right {
+    right: 11px;
+
+    animation:
+        legRight
+        .55s
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes legLeft {
+
+    from {
+        transform: rotate(25deg);
+    }
+
+    to {
+        transform: rotate(-20deg);
+    }
+}
+
+
+@keyframes legRight {
+
+    from {
+        transform: rotate(-25deg);
+    }
+
+    to {
+        transform: rotate(20deg);
+    }
+}
+
+
+/* NAME */
+
+.character-name {
+    margin-top: 8px;
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* ================================================= */
+/* JUMP TO LOVE */
+/* ================================================= */
+
+.priyanshu.jump {
+    animation:
+        jumpToLove
+        1.8s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+.priyanshu.jump .character {
+    animation: none;
+}
+
+
+@keyframes jumpToLove {
+
+    0% {
+        left: 28%;
+        top: 50%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(0deg)
+            scale(1);
+    }
+
+    20% {
+        left: 36%;
+        top: 34%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(-8deg)
+            scale(1.03);
+    }
+
+    40% {
+        left: 47%;
+        top: 21%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(-13deg)
+            scale(1.07);
+    }
+
+    60% {
+        left: 59%;
+        top: 18%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(12deg)
+            scale(1.1);
+    }
+
+    80% {
+        left: 70%;
+        top: 32%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(7deg)
+            scale(1.05);
+    }
+
+    100% {
+        left: 78%;
+        top: 50%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(0deg)
+            scale(1);
+    }
+}
+
+
+/* ================================================= */
+/* LOVE */
+/* ================================================= */
+
+.love-target {
+    position: absolute;
+
+    left: 78%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.55);
+
+    color: rgb(255, 0, 0);
+
+    font-size:
+        clamp(
+            35px,
+            7vw,
+            90px
+        );
+
+    font-weight: 800;
+
+    letter-spacing:
+        clamp(
+            3px,
+            .6vw,
+            8px
+        );
+
+    opacity: 0;
+
+    z-index: 8;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,255,255,.2);
+
+    transition:
+        opacity .7s ease,
+        transform 1s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.love-target.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+}
+
+.love-target.big {
+    transform:
+        translate(-50%,-50%)
+        scale(1.45);
+
+    text-shadow:
+        0 0 40px
+        rgba(255,255,255,.5);
+}
+
+
+/* ================================================= */
+/* CINEMATIC EFFECT */
+/* ================================================= */
+
+.cinematic-shot {
+    position: absolute;
+
+    width:
+        clamp(
+            70px,
+            12vw,
+            130px
+        );
+
+    height: 3px;
+
+    background:
+        rgba(255,255,255,.95);
+
+    opacity: 0;
+
+    z-index: 15;
+
+    pointer-events: none;
+
+    box-shadow:
+        0 0 9px
+        rgba(255,255,255,.9);
+}
+
+.cinematic-shot::after {
+    content: "";
+
+    position: absolute;
+
+    width: 15px;
+    height: 3px;
+
+    right: -15px;
+
+    background: white;
+
+    box-shadow:
+        0 0 10px white;
+}
+
+.shot-left {
+    left: -150px;
+}
+
+.shot-right {
+    right: -150px;
+
+    transform:
+        rotate(180deg);
+}
+
+
+.cinematic-shot.fire-left {
+    animation:
+        shotLeft
+        .42s
+        ease-out
+        forwards;
+}
+
+.cinematic-shot.fire-right {
+    animation:
+        shotRight
+        .42s
+        ease-out
+        forwards;
+}
+
+
+@keyframes shotLeft {
+
+    0% {
+        left: -150px;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 50%;
+        opacity: 0;
+    }
+}
+
+
+@keyframes shotRight {
+
+    0% {
+        right: -150px;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        right: 50%;
+        opacity: 0;
+    }
+}
+
+
+/* FLASH */
+
+.cinematic-flash {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    background: white;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.cinematic-flash.fire {
+    animation:
+        cinematicFlash
+        .16s
+        ease-out;
+}
+
+
+@keyframes cinematicFlash {
+
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .7;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* SCREEN SHAKE */
+
+.game-page.shake {
+    animation:
+        screenShake
+        .35s
+        ease;
+}
+
+
+@keyframes screenShake {
+
+    0%,100% {
+        transform:
+            translate(0,0);
+    }
+
+    20% {
+        transform:
+            translate(-5px,2px);
+    }
+
+    40% {
+        transform:
+            translate(5px,-2px);
+    }
+
+    60% {
+        transform:
+            translate(-3px,1px);
+    }
+
+    80% {
+        transform:
+            translate(3px,-1px);
+    }
+}
+
+
+/* ================================================= */
+/* FALL */
+/* ================================================= */
+
+.priyanshu.fall {
+    animation:
+        characterFall
+        1.5s
+        cubic-bezier(.55,.08,.68,.53)
+        forwards;
+}
+
+
+@keyframes characterFall {
+
+    0% {
+        left: 78%;
+        top: 50%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(0deg);
+    }
+
+    25% {
+        top: 56%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(18deg);
+    }
+
+    55% {
+        top: 76%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(55deg);
+    }
+
+    100% {
+        top: 125%;
+
+        transform:
+            translate(-50%,-50%)
+            rotate(90deg);
+    }
+}
+
+
+/* ================================================= */
+/* RED OVERLAY */
+/* ================================================= */
+
+.red-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 30;
+
+    background:
+        rgba(130,0,0,.78);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1.5s ease;
+}
+/* ================================================= */
+/* ALOK VIDEO */
+/* ================================================= */
+
+.alok-video {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 30;
+
+    opacity: 0;
+    visibility: hidden;
+
+    background: #000;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.alok-video.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.red-overlay.show {
+    opacity: 1;
+}
+
+
+/* ================================================= */
+/* GAME OVER */
+/* ================================================= */
+
+.game-over {
+    position: absolute;
+
+    left: 50%;
+    top: 42%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.55);
+
+    z-index: 40;
+
+    color: white;
+
+    font-family:
+        Impact,
+        "Arial Black",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            42px,
+            9vw,
+            115px
+        );
+
+    font-weight: 900;
+
+    letter-spacing:
+        clamp(
+            4px,
+            1vw,
+            12px
+        );
+
+    text-align: center;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    text-shadow:
+        0 4px 0 rgba(0,0,0,.45),
+        0 8px 25px rgba(0,0,0,.8),
+        0 0 35px rgba(255,255,255,.25);
+
+    transition:
+        opacity 1.1s ease,
+        transform 1.1s
+        cubic-bezier(.16,1,.3,1);
+}
+/* ================================================= */
+/* FUNNY HEALTH MESSAGE */
+/* ================================================= */
+
+.health-message {
+    position: absolute;
+
+    left: 50%;
+    top: 56%;
+
+    transform:
+        translate(-50%, -50%)
+        translateY(20px);
+
+    z-index: 40;
+
+    width: min(90%, 700px);
+
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(
+            14px,
+            2.3vw,
+            24px
+        );
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+    line-height: 1.4;
+
+    text-align: center;
+
+    opacity: 0;
+
+    text-shadow:
+        0 3px 12px rgba(0,0,0,.9);
+
+    transition:
+        opacity .9s ease,
+        transform .9s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.health-message.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        translateY(0);
+}
+
+.game-over.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+.game-over.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+}
+
+/* ================================================= */
+/* FUNNY HEALTH MESSAGE */
+/* ================================================= */
+
+.health-message {
+    position: absolute;
+
+    left: 50%;
+    top: 57%;
+
+    transform:
+        translate(-50%, -50%)
+        translateY(18px);
+
+    z-index: 40;
+
+    width: min(90%, 650px);
+
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(
+            13px,
+            2.2vw,
+            22px
+        );
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+    line-height: 1.4;
+
+    text-align: center;
+
+    opacity: 0;
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,.85);
+
+    transition:
+        opacity .9s ease,
+        transform .9s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.health-message.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        translateY(0);
+}
+
+
+/* ================================================= */
+/* NEXT BUTTON */
+/* ================================================= */
+
+.game-next {
+    position: absolute;
+
+    left: 50%;
+    bottom: 5vh;
+
+    transform:
+        translateX(-50%)
+        translateY(20px);
+
+    z-index: 50;
+
+    padding:
+        clamp(9px,1.5vh,13px)
+        clamp(22px,3vw,32px);
+    background:
+    linear-gradient(
+        135deg,
+        #00c6ff,
+        #7b61ff
+    );
+
+    border: 2px solid rgba(255,255,255,.8);
+
+box-shadow:
+    0 8px 25px rgba(0,198,255,.45),
+    0 0 25px rgba(123,97,255,.4);
+
+color: #ffffff;
+
+border:
+    2px solid
+    rgba(255,255,255,.9);
+
+box-shadow:
+    0 8px 25px rgba(150,100,190,.30);    
+
+
+
+    
+    border-radius: 28px;
+
+    font-size:
+        clamp(9px,1.5vw,11px);
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        background .3s ease,
+        color .3s ease;
+}
+
+.game-next.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+.game-next:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #ff4fa3,
+            #9b6cff
+        );
+
+    color: white;
+
+    transform:
+        translateX(-50%)
+        scale(1.06);
+
+    box-shadow:
+        0 12px 35px rgba(255,79,163,.5),
+        0 0 30px rgba(155,108,255,.6);
+}
+
+
+/* ================================================= */
+/* MOBILE LANDSCAPE */
+/* ================================================= */
+
+@media
+(orientation: landscape)
+and (max-height: 500px) {
+
+    .communication {
+
+        width: 96vw;
+
+        gap:
+            clamp(
+                4px,
+                1vw,
+                12px
+            );
+    }
+
+    .path-word {
+
+        font-size:
+            clamp(
+                11px,
+                2.7vw,
+                20px
+            );
+
+        letter-spacing: 1px;
+    }
+
+    .path-arrow {
+
+        font-size:
+            clamp(
+                10px,
+                2vw,
+                16px
+            );
+    }
+
+    .character {
+
+        transform:
+            scale(.72);
+    }
+
+    .love-target {
+
+        font-size:
+            clamp(
+                30px,
+                7vw,
+                55px
+            );
+
+        letter-spacing: 3px;
+    }
+
+    .game-over {
+
+        font-size:
+            clamp(
+                28px,
+                8vw,
+                55px
+            );
+
+        letter-spacing: 3px;
+    }
+
+    .game-next {
+
+        background:
+    linear-gradient(135deg, #ff8fc7, #a98cff) !important;
+
+color: white !important;
+
+border:
+    2px solid white !important;
+
+box-shadow:
+    0 8px 25px rgba(150,100,190,.35);
+
+        
+    }
+}
+
+
+/* ================================================= */
+/* VERY SMALL LANDSCAPE PHONES */
+/* ================================================= */
+
+@media
+(orientation: landscape)
+and (max-height: 380px) {
+
+    .communication {
+
+        transform:
+            translate(-50%,-50%)
+            scale(.82);
+    }
+
+    .character {
+
+        transform:
+            scale(.6);
+    }
+
+    .character-name {
+
+        font-size: 7px;
+    }
+
+    .game-over {
+
+        top: 40%;
+
+        font-size:
+            clamp(
+                25px,
+                7vw,
+                45px
+            );
+    }
+
+    .game-next {
+
+        bottom: 8px;
+
+        padding:
+            6px 18px;
+    }
+}
+
+
+/* ================================================= */
+/* PORTRAIT — ROTATE MESSAGE */
+/* ================================================= */
+
+@media (orientation: portrait) {
+
+    .game-page {
+
+        display: none !important;
+    }
+}
+   
+/* ==========================================
+   SCREEN 5
+========================================== */
+
+#screen5{
+    position:fixed;
+    inset:0;
+
+    width:100vw;
+    height:100dvh;
+
+    display:none;
+
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffffff 0%,
+            #fff1f8 35%,
+            #eee8ff 72%,
+            #e9f5ff 100%
+        );
+
+    z-index:999;
+}
+
+
+/* Background glow */
+
+#screen5::before{
+    content:"";
+
+    position:absolute;
+
+    width:80vmax;
+    height:80vmax;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.9),
+            transparent 68%
+        );
+
+    animation:screen5BgGlow 5s ease-in-out infinite;
+
+    pointer-events:none;
+}
+
+@keyframes screen5BgGlow{
+
+    0%,100%{
+        transform:scale(.8);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.15);
+        opacity:1;
+    }
+}
+
+
+/* ==========================================
+   FLOATING HEARTS
+========================================== */
+
+.screen5-heart{
+    position:absolute;
+
+    color:rgba(255,80,160,.3);
+
+    font-size:22px;
+
+    pointer-events:none;
+
+    animation:screen5HeartFloat 5s ease-in-out infinite;
+}
+
+.screen5-heart.heart1{
+    left:8%;
+    top:17%;
+}
+
+.screen5-heart.heart2{
+    right:9%;
+    top:22%;
+
+    font-size:16px;
+
+    animation-delay:1s;
+}
+
+.screen5-heart.heart3{
+    left:12%;
+    bottom:18%;
+
+    font-size:15px;
+
+    animation-delay:2s;
+}
+
+.screen5-heart.heart4{
+    right:12%;
+    bottom:15%;
+
+    animation-delay:1.5s;
+}
+
+
+@keyframes screen5HeartFloat{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity:.2;
+    }
+
+    50%{
+        transform:
+            translateY(-25px)
+            rotate(10deg);
+
+        opacity:.7;
+    }
+}
+
+
+/* ==========================================
+   TITLE
+========================================== */
+
+.screen5-title{
+
+    position:absolute;
+
+    top:6vh;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-family:Arial,sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:4px;
+
+    color:rgba(70,45,90,.5);
+
+    opacity:0;
+
+    animation:
+        screen5TitleIn
+        1s
+        ease
+        .8s
+        forwards;
+}
+
+
+@keyframes screen5TitleIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateX(-50%)
+            translateY(-15px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+/* ==========================================
+   IMAGE WRAPPER
+========================================== */
+
+.screen5-image-wrap{
+
+    position:relative;
+
+    width:min(78vw,900px);
+    height:min(70vh,680px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:10;
+
+    opacity:0;
+
+    transform:
+        scale(.15)
+        translateY(100px);
+
+    filter:blur(18px);
+
+    animation:
+        screen5ImageReveal
+        2.3s
+        cubic-bezier(.16,1,.3,1)
+        .3s
+        forwards;
+}
+
+
+@keyframes screen5ImageReveal{
+
+    0%{
+        opacity:0;
+
+        transform:
+            scale(.15)
+            translateY(100px);
+
+        filter:blur(18px);
+    }
+
+    45%{
+        opacity:1;
+
+        transform:
+            scale(1.06)
+            translateY(-10px);
+
+        filter:blur(0);
+    }
+
+    70%{
+        transform:
+            scale(.97)
+            translateY(0);
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+        filter:blur(0);
+    }
+}
+
+
+/* ==========================================
+   IMAGE GLOW
+========================================== */
+
+.screen5-glow{
+
+    position:absolute;
+
+    width:108%;
+    height:108%;
+
+    border-radius:32px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,70,170,.35),
+            rgba(150,90,255,.2),
+            transparent 70%
+        );
+
+    filter:blur(25px);
+
+    z-index:-2;
+
+    animation:
+        screen5GlowPulse
+        3s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes screen5GlowPulse{
+
+    0%,100%{
+        transform:scale(.94);
+        opacity:.55;
+    }
+
+    50%{
+        transform:scale(1.04);
+        opacity:1;
+    }
+}
+
+
+/* ==========================================
+   IMAGE FRAME
+========================================== */
+
+.screen5-frame{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    padding:10px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4fa3,
+            #ffffff,
+            #ad68ff,
+            #ffffff,
+            #ff4fa3
+        );
+
+    background-size:300% 300%;
+
+    animation:
+        screen5BorderMove
+        5s
+        ease
+        infinite;
+
+    box-shadow:
+
+        0 25px 60px
+        rgba(100,50,120,.25),
+
+        0 0 35px
+        rgba(255,80,180,.3);
+
+    overflow:hidden;
+}
+
+
+@keyframes screen5BorderMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+
+/* ==========================================
+   INNER BORDER
+========================================== */
+
+.screen5-frame::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:5px;
+
+    border-radius:23px;
+
+    border:2px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,.4);
+
+    z-index:5;
+
+    pointer-events:none;
+}
+
+
+/* ==========================================
+   SHINE
+========================================== */
+
+.screen5-frame::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+    left:-60%;
+
+    width:35%;
+    height:300%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.75),
+            transparent
+        );
+
+    transform:rotate(25deg);
+
+    animation:
+        screen5Shine
+        4s
+        ease-in-out
+        infinite;
+
+    z-index:6;
+
+    pointer-events:none;
+}
+
+
+@keyframes screen5Shine{
+
+    0%{
+        left:-60%;
+    }
+
+    55%{
+        left:130%;
+    }
+
+    100%{
+        left:130%;
+    }
+}
+
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.screen5-image{
+
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    border-radius:20px;
+
+    background:#fff;
+
+    position:relative;
+
+    z-index:2;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+}
+
+
+/* ==========================================
+   DECORATIVE CORNERS
+========================================== */
+
+.frame-corner{
+
+    position:absolute;
+
+    width:38px;
+    height:38px;
+
+    z-index:8;
+
+    pointer-events:none;
+}
+
+.frame-corner::before,
+.frame-corner::after{
+
+    content:"";
+
+    position:absolute;
+
+    background:#fff;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.9);
+}
+
+.frame-corner::before{
+    width:100%;
+    height:3px;
+}
+
+.frame-corner::after{
+    width:3px;
+    height:100%;
+}
+
+.top-left{
+    top:16px;
+    left:16px;
+}
+
+.top-right{
+    top:16px;
+    right:16px;
+    transform:rotate(90deg);
+}
+
+.bottom-right{
+    bottom:16px;
+    right:16px;
+    transform:rotate(180deg);
+}
+
+.bottom-left{
+    bottom:16px;
+    left:16px;
+    transform:rotate(270deg);
+}
+
+
+/* ==========================================
+   NEXT BUTTON
+========================================== */
+
+#screen5Next{
+
+    position:fixed;
+
+    left:50%;
+    bottom:5vh;
+
+    z-index:100;
+
+    border:none;
+
+    padding:14px 35px;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5da8,
+            #a96cff
+        );
+
+    color:white;
+
+    font-family:Arial,sans-serif;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:
+        translateX(-50%)
+        translateY(30px)
+        scale(.8);
+
+    box-shadow:
+        0 12px 35px
+        rgba(130,70,170,.4);
+
+    transition:
+        opacity .7s ease,
+        transform .6s ease;
+}
+
+
+#screen5Next.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0)
+        scale(1);
+
+    animation:
+        screen5ButtonFloat
+        2s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes screen5ButtonFloat{
+
+    0%,100%{
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translateX(-50%)
+            translateY(-5px)
+            scale(1.04);
+    }
+}
+
+
+#screen5Next span{
+    margin-left:8px;
+    font-size:16px;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:600px){
+
+    .screen5-image-wrap{
+
+        width:88vw;
+        height:65vh;
+    }
+
+    .screen5-frame{
+
+        padding:7px;
+
+        border-radius:22px;
+    }
+
+    .screen5-image{
+
+        border-radius:16px;
+    }
+
+    .frame-corner{
+
+        width:28px;
+        height:28px;
+    }
+
+    .top-left{
+        top:11px;
+        left:11px;
+    }
+
+    .top-right{
+        top:11px;
+        right:11px;
+    }
+
+    .bottom-right{
+        bottom:11px;
+        right:11px;
+    }
+
+    .bottom-left{
+        bottom:11px;
+        left:11px;
+    }
+
+    #screen5Next{
+
+        bottom:4vh;
+
+        padding:13px 29px;
+
+        font-size:9px;
+
+        letter-spacing:2.5px;
+    }
+
+    .screen5-title{
+
+        top:4vh;
+
+        font-size:7px;
+
+        letter-spacing:2.5px;
+    }
+}
+
+
+/* Landscape mobile */
+
+@media(
+    orientation:landscape
+) and (
+    max-height:500px
+){
+
+    .screen5-image-wrap{
+
+        width:62vw;
+        height:72vh;
+    }
+
+    .screen5-title{
+        display:none;
+    }
+
+    #screen5Next{
+        bottom:3vh;
+    }
+}   
+
+/* =================================================
+   SCREEN 4.5 — OK VIDEO
+================================================= */
+
+.ok-video-page {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100dvh;
+
+    z-index: 2000;
+
+    background: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.ok-video-page.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* OK VIDEO */
+
+.ok-video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    /*
+       Thoda zoom
+    */
+    transform: scale(1.08);
+
+    background: #000;
+
+    opacity: 0;
+
+    transition:
+        opacity 1.2s ease,
+        transform 6s cubic-bezier(.16,1,.3,1);
+}
+
+.ok-video-page.show .ok-video {
+    opacity: 1;
+
+    /*
+       Starting zoom 1.08 se
+       slowly 1.12 tak
+    */
+    transform: scale(1.12);
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .ok-video {
+        transform: scale(1.08);
+    }
+
+    .ok-video-page.show .ok-video {
+        transform: scale(1.12);
+    }
+}
+
+
+
+/* =================================================
+   SCREEN 6 — TIME VIDEO
+================================================= */
+
+#screen6 {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100dvh;
+
+    background: #000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    z-index: 3000;
+}
+
+
+.time-video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    background: #000;
+}
+
+
+.time-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.18),
+            rgba(0,0,0,.48)
+        );
+
+    z-index: 2;
+}
+
+
+.time-text {
+    position: relative;
+
+    z-index: 5;
+
+    width: min(90%, 900px);
+
+    text-align: center;
+
+    color: white;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(24px, 4vw, 52px);
+
+    line-height: 1.35;
+
+    font-weight: 400;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 4px 20px rgba(0,0,0,.8);
+
+    animation:
+        timeTextIn 2s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+
+@keyframes timeTextIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px)
+            scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* SCREEN 6 NEXT */
+
+#screen6Next {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    bottom: 6vh;
+
+    transform:
+        translateX(-50%)
+        translateY(25px);
+
+    padding: 14px 34px;
+
+    border: 1px solid rgba(255,255,255,.8);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    animation:
+        screen6ButtonIn
+        1s ease
+        2s forwards;
+
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+
+
+@keyframes screen6ButtonIn {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+#screen6Next:hover {
+    background: white;
+    color: black;
+
+    transform:
+        translateX(-50%)
+        scale(1.06);
+}
+
+
+/* =================================================
+   FINAL SCREEN — KHAIR
+================================================= */
+
+#finalScreen {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100dvh;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+
+    z-index: 4000;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+}
+
+
+#finalScreen.show {
+    opacity: 1;
+}
+
+
+.final-content {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+}
+
+
+/* KHAIR */
+
+.final-word {
+
+    color: white;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            80px,
+            18vw,
+            220px
+        );
+
+    font-weight: 400;
+
+    letter-spacing: 8px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 30px rgba(255,255,255,.12);
+
+    opacity: 0;
+
+    transform:
+        scale(.7)
+        translateY(20px);
+
+    animation:
+        khairReveal
+        2s
+        cubic-bezier(.16,1,.3,1)
+        .3s
+        forwards;
+}
+
+
+@keyframes khairReveal {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(.7)
+            translateY(20px);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            scale(1.08)
+            translateY(0);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* ROSE */
+
+.rose {
+
+    font-size:
+        clamp(
+            45px,
+            7vw,
+            75px
+        );
+
+    opacity: 0;
+
+    transform:
+        translateY(15px)
+        scale(.6);
+
+    animation:
+        roseReveal
+        1.5s
+        cubic-bezier(.16,1,.3,1)
+        1.2s
+        forwards;
+}
+
+
+@keyframes roseReveal {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width:600px) {
+
+    .time-text {
+        font-size: 25px;
+        line-height: 1.4;
+        padding: 20px;
+    }
+
+    #screen6Next {
+        bottom: 5vh;
+        padding: 13px 29px;
+    }
+
+    .final-word {
+        font-size: 90px;
+        letter-spacing: 4px;
+    }
+
+}
+
+
+
+
+    
+/* =================================================
+   NEW: LAST SCREEN FLOW
+================================================= */
+
+.khair-next-button {
+    display: block;
+    margin: 30px auto 0;
+    padding: 13px 30px;
+    border: 1px solid rgba(255,255,255,.55);
+    border-radius: 999px;
+    background: rgba(255,255,255,.10);
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    position: relative;
+    z-index: 30;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: 0 8px 28px rgba(0,0,0,.25);
+    transition: .3s ease;
+}
+
+.khair-next-button:hover {
+    background: rgba(255,255,255,.20);
+    transform: translateY(-2px);
+}
+
+.khair-next-button span {
+    margin-left: 7px;
+    font-size: 15px;
+}
+
+
+/* =================================================
+   VOLUME / SONG QUESTION SCREEN
+================================================= */
+
+#songQuestionScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 50% 38%, rgba(255,190,220,.42), transparent 24%),
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.20), transparent 24%),
+        radial-gradient(circle at 85% 80%, rgba(255,120,180,.18), transparent 30%),
+        linear-gradient(135deg, #2a1025, #5a173d, #210d2c);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.035);
+
+    transition:
+        opacity 1s ease,
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        visibility 1s;
+}
+
+#songQuestionScreen.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.song-question-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(30px);
+    pointer-events: none;
+    animation: sqGlow 4s ease-in-out infinite alternate;
+}
+
+.glow-one {
+    width: 260px;
+    height: 260px;
+    background: rgba(255,160,205,.16);
+    top: 8%;
+    left: 8%;
+}
+
+.glow-two {
+    width: 300px;
+    height: 300px;
+    background: rgba(255,95,165,.12);
+    bottom: 2%;
+    right: 4%;
+    animation-delay: 1s;
+}
+
+@keyframes sqGlow {
+    from { transform: scale(.9); opacity: .45; }
+    to { transform: scale(1.12); opacity: .85; }
+}
+
+.song-question-sparkle {
+    position: absolute;
+    color: rgba(255,255,255,.78);
+    font-size: 18px;
+    opacity: 0;
+    animation: sqSparkle 3.5s ease-in-out infinite;
+}
+
+.sparkle-one { top: 20%; left: 22%; }
+.sparkle-two { top: 27%; right: 19%; animation-delay: .8s; }
+.sparkle-three { bottom: 22%; left: 18%; animation-delay: 1.5s; }
+
+@keyframes sqSparkle {
+    0%,100% {
+        opacity: .25;
+        transform: translateY(0) scale(.8) rotate(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.15) rotate(18deg);
+    }
+}
+
+.volume-animation {
+    position: relative;
+    width: 190px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 42px;
+}
+
+.volume-ring {
+    position: absolute;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.ring-one {
+    width: 130px;
+    height: 130px;
+    animation: volumeRing 3.2s ease-out forwards;
+}
+
+.ring-two {
+    width: 175px;
+    height: 175px;
+    animation: volumeRing 3.2s ease-out .25s forwards;
+}
+
+@keyframes volumeRing {
+    0% { opacity: .8; transform: scale(.45); }
+    75% { opacity: .18; }
+    100% { opacity: 0; transform: scale(1.25); }
+}
+
+.volume-orb {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 35% 30%, #fff8fc, #ffb5d5 38%, #d74b87 100%);
+
+    box-shadow:
+        0 0 0 8px rgba(255,255,255,.06),
+        0 0 45px rgba(255,130,190,.38);
+
+    animation: volumeOrb 3.4s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.volume-speaker {
+    color: #6f173f;
+    font-family: Georgia, serif;
+    font-size: 38px;
+}
+
+@keyframes volumeOrb {
+    0% {
+        transform: scale(1.35);
+        box-shadow:
+            0 0 0 18px rgba(255,255,255,.10),
+            0 0 80px rgba(255,130,190,.65);
+    }
+    55% { transform: scale(1.08); }
+    100% {
+        transform: scale(.86);
+        box-shadow:
+            0 0 0 4px rgba(255,255,255,.04),
+            0 0 28px rgba(255,130,190,.22);
+    }
+}
+
+.volume-bars {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 45px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.volume-bars span {
+    display: block;
+    width: 4px;
+    border-radius: 99px;
+    background: rgba(255,255,255,.86);
+    transform-origin: bottom;
+    animation: volumeBar 3.2s ease-in-out forwards;
+}
+
+.volume-bars span:nth-child(1) { height: 17px; }
+.volume-bars span:nth-child(2) { height: 28px; animation-delay: .08s; }
+.volume-bars span:nth-child(3) { height: 40px; animation-delay: .16s; }
+.volume-bars span:nth-child(4) { height: 45px; animation-delay: .24s; }
+.volume-bars span:nth-child(5) { height: 37px; animation-delay: .16s; }
+.volume-bars span:nth-child(6) { height: 27px; animation-delay: .08s; }
+.volume-bars span:nth-child(7) { height: 16px; }
+
+@keyframes volumeBar {
+    0% { opacity: 1; transform: scaleY(1); }
+    45% { opacity: 1; transform: scaleY(.72); }
+    100% { opacity: .30; transform: scaleY(.16); }
+}
+
+.song-question-text {
+    width: min(90%, 760px);
+    text-align: center;
+    color: rgba(255,255,255,.94);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(22px, 4vw, 46px);
+    line-height: 1.35;
+    letter-spacing: 2px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(22px) scale(.97);
+}
+
+.song-question-text span { display: block; }
+
+.song-question-text strong {
+    display: block;
+    margin-top: 7px;
+    color: #ff4f7b;
+    font-weight: 700;
+    text-shadow: 0 0 24px rgba(255,55,110,.32);
+}
+
+#songQuestionScreen.show .song-question-text {
+    animation: songTextReveal 1.2s cubic-bezier(.16,1,.3,1) 3.25s forwards;
+}
+
+@keyframes songTextReveal {
+    from {
+        opacity: 0;
+        transform: translateY(22px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =================================================
+   GIRL PHOTO + ACTUAL SONG SCREEN — ENHANCED
+================================================= */
+
+#girlSongScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 160;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 50% 40%, rgba(255,210,220,.32), transparent 22%),
+        radial-gradient(circle at 15% 20%, rgba(255,120,155,.25), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(255,70,120,.22), transparent 28%),
+        linear-gradient(145deg, #28030b, #720d26 45%, #35030e);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.03);
+
+    transition:
+        opacity 1.1s ease,
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        visibility 1.1s;
+}
+
+#girlSongScreen::before,
+#girlSongScreen::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#girlSongScreen::before {
+    width: 520px;
+    height: 520px;
+    left: -180px;
+    top: -180px;
+    background: rgba(255,100,145,.16);
+    filter: blur(18px);
+    animation: floatingRoseGlow 7s ease-in-out infinite alternate;
+}
+
+#girlSongScreen::after {
+    width: 460px;
+    height: 460px;
+    right: -150px;
+    bottom: -160px;
+    background: rgba(255,170,190,.13);
+    filter: blur(25px);
+    animation: floatingRoseGlow 8s ease-in-out 1s infinite alternate-reverse;
+}
+
+#girlSongScreen.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+@keyframes floatingRoseGlow {
+    from { transform: translate(0,0) scale(.85); opacity: .45; }
+    to { transform: translate(35px,-25px) scale(1.15); opacity: .9; }
+}
+
+.girl-screen-glow {
+    position: absolute;
+    width: 62vw;
+    height: 62vw;
+    max-width: 720px;
+    max-height: 720px;
+    border-radius: 50%;
+    background: rgba(255,110,145,.13);
+    filter: blur(55px);
+    animation: girlGlow 4s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes girlGlow {
+    from { transform: scale(.88); opacity: .45; }
+    to { transform: scale(1.08); opacity: .95; }
+}
+
+.girl-photo-frame {
+    position: relative;
+    width: min(72vw, 470px);
+    height: min(67vh, 590px);
+    padding: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(145deg, #fffafd, #ffd0dc 38%, #e75b82 72%, #7c0b2b);
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.7),
+        0 0 35px rgba(255,160,185,.32),
+        0 22px 75px rgba(0,0,0,.48);
+
+    transform: translateY(18px) scale(.94);
+    opacity: 0;
+
+    animation: frameFloat 5s ease-in-out 2s infinite alternate;
+}
+
+#girlSongScreen.show .girl-photo-frame {
+    animation:
+        girlFrameReveal 1.3s cubic-bezier(.16,1,.3,1) .15s forwards,
+        frameFloat 5s ease-in-out 1.6s infinite alternate;
+}
+
+@keyframes girlFrameReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(.94) rotate(-1deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+    }
+}
+
+@keyframes frameFloat {
+    from { transform: translateY(0) rotate(-.25deg); }
+    to { transform: translateY(-7px) rotate(.25deg); }
+}
+
+.girl-photo-frame::before,
+.girl-photo-frame::after {
+    content: "✦";
+    position: absolute;
+    color: rgba(255,255,255,.85);
+    font-size: 18px;
+    text-shadow: 0 0 16px rgba(255,255,255,.7);
+    animation: frameSparkle 2.8s ease-in-out infinite;
+}
+
+.girl-photo-frame::before {
+    top: -15px;
+    left: 16%;
+}
+
+.girl-photo-frame::after {
+    bottom: -12px;
+    right: 16%;
+    animation-delay: 1.2s;
+}
+
+@keyframes frameSparkle {
+    0%,100% { opacity: .2; transform: scale(.7) rotate(0); }
+    50% { opacity: 1; transform: scale(1.25) rotate(20deg); }
+}
+
+.girl-frame-inner {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.95);
+    overflow: hidden;
+    box-shadow:
+        inset 0 0 0 1px rgba(120,0,25,.12),
+        0 0 20px rgba(255,255,255,.18);
+}
+
+.girl-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+    background: #f5dce1;
+}
+
+.girl-song-caption {
+    margin-top: 17px;
+    color: rgba(255,245,248,.84);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    opacity: 0;
+}
+
+#girlSongScreen.show .girl-song-caption {
+    animation: girlCaptionReveal .8s ease 1s forwards;
+}
+
+.girl-song-caption span {
+    margin: 0 8px;
+    color: #ff9db2;
+}
+
+@keyframes girlCaptionReveal {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.girl-next-button {
+    position: absolute;
+    bottom: 7%;
+    left: 50%;
+
+    padding: 13px 29px;
+
+    border: 1px solid rgba(255,255,255,.52);
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.10);
+    color: #fff;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateX(-50%) translateY(15px);
+
+    transition:
+        opacity .7s ease,
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+.girl-next-button.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+    animation: nextButtonGlow 2s ease-in-out infinite alternate;
+}
+
+.girl-next-button:hover {
+    background: rgba(255,255,255,.20);
+    box-shadow: 0 0 28px rgba(255,150,175,.28);
+}
+
+.girl-next-button span {
+    margin-left: 7px;
+    font-size: 15px;
+}
+
+@keyframes nextButtonGlow {
+    from { box-shadow: 0 0 8px rgba(255,255,255,.08); }
+    to { box-shadow: 0 0 24px rgba(255,145,175,.32); }
+}
+
+/* =================================================
+   NEW SCREEN — DESERT WITH WIND + "5:45" / "Feeling"
+================================================= */
+#desertScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 170;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 78% 20%, rgba(255,221,160,.95), rgba(255,180,110,0) 34%),
+        linear-gradient(180deg, #ffdca3 0%, #ffb677 26%, #ec8b5c 44%, #cb6e4f 58%, #a8543a 72%, #7f3d29 100%);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.03);
+
+    transition:
+        opacity 1.1s ease,
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        visibility 1.1s;
+}
+
+#desertScreen.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.desert-dune {
+    position: absolute;
+    left: -25%;
+    width: 150%;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    pointer-events: none;
+}
+
+.desert-dune.dune2 {
+    height: 34%;
+    bottom: -14%;
+    background: linear-gradient(180deg, #b96a44, #6e3620);
+    opacity: .82;
+}
+
+.desert-dune.dune1 {
+    height: 46%;
+    bottom: -10%;
+    left: -15%;
+    width: 130%;
+    background: linear-gradient(180deg, #d6875a, #8a4a2c);
+    opacity: .92;
+}
+
+.wind-line {
+    position: absolute;
+    left: -20%;
+    height: 2px;
+    width: 110px;
+    background: linear-gradient(90deg, transparent, rgba(255,250,240,.65), transparent);
+    filter: blur(1px);
+    opacity: 0;
+    pointer-events: none;
+    animation: windBlow 3.6s linear infinite;
+}
+
+.wind-line:nth-child(1) { top: 20%; width: 90px;  animation-delay: 0s; }
+.wind-line:nth-child(2) { top: 34%; width: 130px; animation-delay: .7s; }
+.wind-line:nth-child(3) { top: 48%; width: 80px;  animation-delay: 1.5s; }
+.wind-line:nth-child(4) { top: 63%; width: 150px; animation-delay: 2.2s; }
+.wind-line:nth-child(5) { top: 75%; width: 100px; animation-delay: 2.9s; }
+
+@keyframes windBlow {
+    0%   { left: -20%; opacity: 0; }
+    12%  { opacity: .85; }
+    82%  { opacity: .55; }
+    100% { left: 115%; opacity: 0; }
+}
+
+.desert-text-wrap {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+#desertScreen.show .desert-text-wrap {
+    animation: desertTextReveal 1.2s cubic-bezier(.16,1,.3,1) .6s forwards;
+}
+
+@keyframes desertTextReveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.desert-time {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 76px;
+    font-weight: 700;
+    color: #fff6e8;
+    letter-spacing: 2px;
+    text-shadow:
+        0 10px 40px rgba(0,0,0,.35),
+        0 0 26px rgba(255,210,150,.45);
+}
+
+.desert-feeling {
+    margin-top: 4px;
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    letter-spacing: 7px;
+    color: #ffe98f;
+    text-shadow: 0 6px 22px rgba(0,0,0,.32);
+}
+
+
+/* =================================================
+   NEW SCREEN — FINAL FULLSCREEN PHOTO
+================================================= */
+#finalPhotoScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 180;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.03);
+
+    transition:
+        opacity 1.1s ease,
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        visibility 1.1s;
+}
+
+#finalPhotoScreen.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.final-photo-full {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.final-photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.15) 60%, rgba(0,0,0,.55) 100%);
+    pointer-events: none;
+}
+
+.final-photo-next {
+    position: absolute;
+    bottom: 7%;
+    left: 50%;
+
+    padding: 13px 30px;
+
+    border: 1px solid rgba(255,255,255,.55);
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(10px);
+
+    color: #fff;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    cursor: pointer;
+
+    z-index: 5;
+    opacity: 0;
+    transform: translateX(-50%) translateY(15px);
+
+    transition:
+        opacity .7s ease,
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+#finalPhotoScreen.show .final-photo-next {
+    animation: finalNextIn .8s ease .8s forwards;
+}
+
+@keyframes finalNextIn {
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.final-photo-next:hover {
+    background: rgba(255,255,255,.22);
+    box-shadow: 0 0 26px rgba(255,255,255,.28);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.final-photo-next span {
+    margin-left: 7px;
+    font-size: 15px;
+}
+
+@media (max-width: 600px) {
+    .desert-time {
+        font-size: 54px;
+    }
+
+    .desert-feeling {
+        font-size: 16px;
+        letter-spacing: 5px;
+    }
+}
+
+
+/* =================================================
+   NEW SCREEN — CUTE VIDEO CARD (small, not fullscreen)
+================================================= */
+#lastVideoScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 190;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 20% 15%, rgba(255,214,235,.35), transparent 32%),
+        radial-gradient(circle at 85% 82%, rgba(255,190,210,.28), transparent 32%),
+        linear-gradient(160deg, #3a1626, #5c2638 55%, #33141f);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.03);
+
+    transition:
+        opacity 1.1s ease,
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        visibility 1.1s;
+}
+
+#lastVideoScreen.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+#lastVideoScreen::before,
+#lastVideoScreen::after {
+    content: "♡";
+    position: absolute;
+    color: rgba(255,225,232,.22);
+    pointer-events: none;
+    animation: lastHeartFloat 7s ease-in-out infinite alternate;
+}
+
+#lastVideoScreen::before {
+    left: 10%;
+    top: 15%;
+    font-size: 50px;
+    transform: rotate(-8deg);
+}
+
+#lastVideoScreen::after {
+    right: 10%;
+    bottom: 18%;
+    font-size: 38px;
+    animation-delay: 1.6s;
+}
+
+@keyframes lastHeartFloat {
+    from { opacity: .18; transform: translateY(7px) scale(.94) rotate(-6deg); }
+    to   { opacity: .5;  transform: translateY(-10px) scale(1.05) rotate(6deg); }
+}
+
+.last-video-frame {
+    position: relative;
+    width: min(74vw, 420px);
+    height: min(52vh, 460px);
+    padding: 10px;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(145deg, #fffafd, #ffd0dc 40%, #e75b82 74%, #7c0b2b);
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.7),
+        0 0 32px rgba(255,160,185,.30),
+        0 20px 65px rgba(0,0,0,.45);
+
+    opacity: 0;
+    transform: translateY(18px) scale(.94);
+}
+
+#lastVideoScreen.show .last-video-frame {
+    animation:
+        lastFrameReveal 1.2s cubic-bezier(.16,1,.3,1) .2s forwards,
+        lastFrameFloat 5s ease-in-out 1.4s infinite alternate;
+}
+
+@keyframes lastFrameReveal {
+    from { opacity: 0; transform: translateY(18px) scale(.94) rotate(-1deg); }
+    to   { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes lastFrameFloat {
+    from { transform: translateY(0) rotate(-.2deg); }
+    to   { transform: translateY(-6px) rotate(.2deg); }
+}
+
+.last-video-frame::before,
+.last-video-frame::after {
+    content: "✦";
+    position: absolute;
+    color: rgba(255,255,255,.85);
+    font-size: 18px;
+    text-shadow: 0 0 16px rgba(255,255,255,.7);
+    animation: lastFrameSparkle 2.8s ease-in-out infinite;
+}
+
+.last-video-frame::before {
+    top: -15px;
+    left: 16%;
+}
+
+.last-video-frame::after {
+    bottom: -12px;
+    right: 16%;
+    animation-delay: 1.2s;
+}
+
+@keyframes lastFrameSparkle {
+    0%, 100% { opacity: .2; transform: scale(.7) rotate(0); }
+    50%      { opacity: 1;  transform: scale(1.25) rotate(20deg); }
+}
+
+.last-frame-inner {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.95);
+    overflow: hidden;
+    box-shadow:
+        inset 0 0 0 1px rgba(120,0,25,.12),
+        0 0 18px rgba(255,255,255,.18);
+}
+
+.last-video-inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    background: #f5dce1;
+}
+
+
+
+@media (max-width: 600px) {
+    .khair-next-button {
+        margin-top: 25px;
+        padding: 12px 25px;
+    }
+
+    .volume-animation {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 30px;
+    }
+
+    .volume-orb {
+        width: 76px;
+        height: 76px;
+    }
+
+    .volume-speaker {
+        font-size: 32px;
+    }
+
+    .song-question-text {
+        font-size: clamp(19px, 6vw, 30px);
+        letter-spacing: 1.5px;
+    }
+
+    .girl-photo-frame {
+        width: 78vw;
+        height: 64vh;
+        padding: 9px;
+        border-radius: 21px;
+    }
+
+    .girl-song-caption {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .girl-next-button {
+        bottom: 5%;
+    }
+}
+
+
+/* =================================================
+   NEW SCREEN — LAST VIDEO NEXT BUTTON
+   (button on the cute video card + auto-advance)
+================================================= */
+
+.last-video-next {
+    position: absolute;
+    bottom: 7%;
+    left: 50%;
+
+    padding: 13px 30px;
+
+    border: 1px solid rgba(255,255,255,.55);
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(10px);
+
+    color: #fff;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    cursor: pointer;
+
+    z-index: 5;
+    opacity: 0;
+    transform: translateX(-50%) translateY(15px);
+
+    transition:
+        opacity .7s ease,
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+#lastVideoScreen.show .last-video-next {
+    animation: lastVideoNextIn .8s ease 1s forwards;
+}
+
+@keyframes lastVideoNextIn {
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.last-video-next:hover {
+    background: rgba(255,255,255,.22);
+    box-shadow: 0 0 26px rgba(255,255,255,.28);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.last-video-next span {
+    margin-left: 7px;
+    font-size: 15px;
+}
+
+
+/* =================================================
+   NEW SCREEN — FULLSCREEN "full.mp4" VIDEO
+================================================= */
+
+#fullVideoScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.03);
+
+    transition:
+        opacity 1.1s ease,
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        visibility 1.1s;
+}
+
+#fullVideoScreen.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.full-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+}
+
+
+/* =================================================
+   NEW SCREEN — WHITE SCREEN WITH "cool.png" + "rude.mp3"
+================================================= */
+
+#whiteScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 210;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.03);
+
+    transition:
+        opacity 1.1s ease,
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        visibility 1.1s;
+}
+
+#whiteScreen.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.cool-image-wrap {
+    width: min(70vw, 460px);
+    height: min(60vh, 500px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transform: translateY(18px) scale(.94);
+
+    animation: coolImageReveal 1.3s cubic-bezier(.16,1,.3,1) .3s forwards;
+}
+
+@keyframes coolImageReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cool-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 18px;
+}
+
+.cool-song-timeline {
+    width: min(72vw,470px);
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(60,40,55,.75);
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+#whiteScreen.show .cool-song-timeline {
+    animation: coolTimelineIn .8s ease 1.15s forwards;
+}
+
+@keyframes coolTimelineIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cool-progress-wrap {
+    position: relative;
+    flex: 1;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.12);
+    overflow: visible;
+}
+
+.cool-progress {
+    position: relative;
+    width: 0%;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg,#ff9fca,#ff4f7b);
+    box-shadow: 0 0 12px rgba(255,79,123,.35);
+    transition: width .15s linear;
+}
+
+.cool-progress::after {
+    content: "";
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background: #ff4f7b;
+    box-shadow: 0 0 10px rgba(255,79,123,.6);
+}
+
+@media (max-width: 600px) {
+    .cool-image-wrap {
+        width: 84vw;
+        height: 52vh;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+    <!-- ============================= -->
+<!-- SCREEN 0 — FULLSCREEN INTRO -->
+<!-- ============================= -->
+
+<section
+    class="fullscreen-intro"
+    id="fullscreenIntro"
+>
+
+    <div class="fullscreen-logo">
+        ⛶
+    </div>
+
+    <button
+        class="fullscreen-start"
+        id="fullscreenStart"
+    >
+        FULL SCREEN
+    </button>
+
+</section>
+
+
+<!-- ============================= -->
+<!-- ROTATE PHONE SCREEN -->
+<!-- ============================= -->
+
+<section
+    class="rotate-screen"
+    id="rotateScreen"
+>
+
+    <div class="rotate-phone"></div>
+
+    <div class="rotate-text">
+        ROTATE YOUR PHONE
+        <br>
+        TO LANDSCAPE
+    </div>
+
+    <div class="rotate-tap">
+        TAP TO CONTINUE
+    </div>
+
+</section>
+
+
+    <!-- =================================================
+         SCREEN 1
+    ================================================= -->
+
+    <section
+        class="warning-page"
+        id="warningPage"
+    >
+
+        <div class="warning-content">
+
+            <div class="warning-icon">
+                🎧
+            </div>
+
+
+            <div class="warning-small">
+                Before you continue
+            </div>
+
+
+            <h1 class="warning-title">
+                Put your Pods on.
+            </h1>
+
+
+            <p class="warning-text">
+                There's music ahead.<br>
+                You'll hear it better
+                with earphones.
+            </p>
+
+
+            <button
+                class="continue-button"
+                id="continueButton"
+            >
+                I'M READY
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SCREEN 2 — VIDEO PAGE
+    ================================================= -->
+
+    <section
+        class="video-page"
+        id="videoPage"
+    >
+
+
+        <!-- LOADER -->
+
+        <div
+            class="loader"
+            id="loader"
+        >
+
+            <div class="loader-circle"></div>
+
+            <div class="loader-text">
+                LOADING
+            </div>
+
+        </div>
+
+
+
+        <!-- BACKGROUND VIDEO -->
+
+        <video
+            class="background-video"
+            id="backgroundVideo"
+            muted
+            loop
+            playsinline
+            preload="auto"
+        >
+
+            <source
+                src="video/bg.mp4"
+                type="video/mp4"
+            >
+
+        </video>
+
+
+
+        <!-- DARK OVERLAY -->
+
+        <div class="video-overlay"></div>
+
+
+
+        <!-- BUTTON AREA -->
+
+        <div class="button-area">
+
+
+            <!-- CREATIVE CROWN -->
+
+            <div class="question-crown">
+
+                <div class="crown-shape"></div>
+
+                <div class="question-mark">
+                    ?
+                </div>
+
+            </div>
+
+
+
+            <!-- DON'T CLICK BUTTON -->
+
+            <button
+                class="dont-click"
+                id="dontClick"
+            >
+                DON'T CLICK
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SCREEN 3 — IMAGE PAGE
+    ================================================= -->
+
+    <section
+        class="image-page"
+        id="imagePage"
+    >
+
+
+        <div class="image-container">
+
+
+            <!-- IMAGE -->
+
+            <img
+                class="gallery-image"
+                id="galleryImage"
+                src="image/img1.jpg"
+                alt="Gallery Image"
+            >
+
+
+            <!-- NEXT ARROW -->
+
+            <button
+                class="next-button"
+                id="nextButton"
+                aria-label="Next image"
+            >
+                →
+            </button>
+
+        </div>
+
+
+
+        <!-- IMAGE CAPTION -->
+
+        <div
+            class="image-caption"
+            id="imageCaption"
+        >
+            Click the right arrow or swipe right 👉
+        </div>
+
+
+
+        <!-- LAST IMAGE BUTTON -->
+
+        <button
+            class="observed-button"
+            id="observedButton"
+        >
+            Observed thing
+        </button>
+
+
+    </section>
+
+    <!-- =========================================================
+     SCREEN 4 — HTML / BODY
+========================================================= -->
+<!-- ================================================= -->
+<!-- SCREEN 4 -->
+<!-- ================================================= -->
+
+<section
+    class="game-page"
+    id="gamePage"
+>
+
+    <!-- WORD PATH -->
+
+    <div
+        class="communication"
+        id="communication"
+    >
+
+        <span class="path-word">
+            PERSON
+        </span>
+
+        <span class="path-arrow">
+            →
+        </span>
+
+        <span class="path-word">
+            COMMUNICATE
+        </span>
+
+        <span class="path-arrow">
+            →
+        </span>
+
+        <span class="path-word">
+            FRIEND
+        </span>
+
+        <span class="path-arrow">
+            →
+        </span>
+
+        <span class="path-word">
+            TRUST
+        </span>
+
+        <span class="path-arrow">
+            →
+        </span>
+
+        <span class="path-word">
+            LOVE
+        </span>
+
+    </div>
+
+
+
+    <!-- CURVED DOTTED PATH -->
+
+    <svg
+        class="jump-path"
+        id="jumpPath"
+        viewBox="0 0 1000 500"
+        preserveAspectRatio="none"
+    >
+
+        <path
+            d="
+                M 250 250
+
+                C 340 70,
+                  470 40,
+                  560 190
+
+                C 650 340,
+                  720 80,
+                  780 250
+            "
+        />
+
+    </svg>
+
+
+    <!-- LOVE TARGET -->
+
+    <div
+        class="love-target"
+        id="loveTarget"
+    >
+        LOVE
+    </div>
+
+
+    <!-- PRIYANSHU -->
+
+    <div
+        class="priyanshu"
+        id="priyanshu"
+    >
+
+        <div class="character">
+
+            <div
+                class="character-head"
+            ></div>
+
+            <div
+                class="character-body"
+            ></div>
+
+            <div
+                class="character-arm arm-left"
+            ></div>
+
+            <div
+                class="character-arm arm-right"
+            ></div>
+
+            <div
+                class="character-leg leg-left"
+            ></div>
+
+            <div
+                class="character-leg leg-right"
+            ></div>
+
+        </div>
+
+        <div class="character-name">
+            Priyanshu
+        </div>
+
+    </div>
+
+
+    <!-- CINEMATIC STREAKS -->
+
+    <div
+        class="cinematic-shot shot-left"
+        id="shot1"
+    ></div>
+
+    <div
+        class="cinematic-shot shot-right"
+        id="shot2"
+    ></div>
+
+    <div
+        class="cinematic-shot shot-left"
+        id="shot3"
+    ></div>
+
+    <div
+        class="cinematic-shot shot-right"
+        id="shot4"
+    ></div>
+
+    <div
+        class="cinematic-shot shot-left"
+        id="shot5"
+    ></div>
+
+
+    <!-- FLASH -->
+
+    <div
+        class="cinematic-flash"
+        id="cinematicFlash"
+    ></div>
+
+
+    <!-- RED OVERLAY -->
+
+    <div
+        class="red-overlay"
+        id="redOverlay"
+    ></div>
+
+    <!-- ALOK VIDEO -->
+
+<video
+    id="alokVideo"
+    class="alok-video"
+    muted
+    playsinline
+    preload="auto"
+>
+    <source
+        src="video/alok.mp4"
+        type="video/mp4"
+    >
+</video>
+
+
+
+    <!-- GAME OVER -->
+
+    <!-- GAME OVER -->
+
+<div
+    class="game-over"
+    id="gameOver"
+>
+    GAME OVER
+</div>
+
+<!-- FUNNY HEALTH MESSAGE -->
+
+<div
+    class="health-message"
+    id="healthMessage"
+>
+    ⚠️ Skip the steps? Your Heart says: "Bro, WHY?" 😂
+</div>
+
+
+    <!-- NEXT -->
+
+    <button
+        class="game-next"
+        id="gameNext"
+    >
+        NEXT →
+    </button>
+
+</section>
+
+
+
+<!-- =================================================
+     SCREEN 4.5 — OK VIDEO
+================================================= -->
+
+<section id="okVideoPage" class="ok-video-page">
+
+    <video
+        id="okVideo"
+        class="ok-video"
+        playsinline
+        preload="auto"
+    >
+        <source
+            src="video/ok.mp4"
+            type="video/mp4"
+        >
+    </video>
+
+</section>
+
+
+
+
+    <!-- ================= SCREEN 5 ================= -->
+
+<section id="screen5">
+
+    <!-- Background hearts -->
+    <div class="screen5-heart heart1">♥</div>
+    <div class="screen5-heart heart2">♡</div>
+    <div class="screen5-heart heart3">♥</div>
+    <div class="screen5-heart heart4">♡</div>
+
+    <!-- Top text -->
+    <div class="screen5-title">
+        SOMETHING SPECIAL FOR YOU
+    </div>
+
+    <!-- Image -->
+    <div class="screen5-image-wrap">
+
+        <div class="screen5-glow"></div>
+
+        <div class="screen5-frame">
+
+            <div class="frame-corner top-left"></div>
+            <div class="frame-corner top-right"></div>
+            <div class="frame-corner bottom-left"></div>
+            <div class="frame-corner bottom-right"></div>
+
+            <img
+                src="image/img11.png"
+                alt="Special Image"
+                class="screen5-image"
+            >
+
+        </div>
+
+    </div>
+
+    <!-- NEXT -->
+    <button id="screen5Next">
+        NEXT <span>→</span>
+    </button>
+
+</section>
+
+
+<!-- ================= SCREEN 6 ================= -->
+
+<section id="screen6">
+
+   <video id="timeVideo" muted playsinline>
+    <source src="video/time.mp4" type="video/mp4">
+     </video>
+
+    <div class="time-overlay"></div>
+
+    <div class="time-text">
+        If I could stop or reverse time,<br>
+        I would definitely do it
+    </div>
+
+    <button id="screen6Next">
+        NEXT →
+    </button>
+
+</section>
+
+
+<!-- ================= FINAL SCREEN ================= -->
+
+<section id="finalScreen">
+
+    <div class="final-content">
+
+        <div class="final-word">
+             Khair🌹
+        </div>
+
+        <!-- NEW: NEXT button under Khair -->
+        <button id="khairNext" class="khair-next-button">NEXT <span>→</span></button>
+
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =================================================
+     NEW SCREEN — VOLUME / SONG QUESTION
+================================================= -->
+<section id="songQuestionScreen">
+    <div class="song-question-glow glow-one"></div>
+    <div class="song-question-glow glow-two"></div>
+    <div class="song-question-sparkle sparkle-one">✦</div>
+    <div class="song-question-sparkle sparkle-two">✧</div>
+    <div class="song-question-sparkle sparkle-three">✦</div>
+
+    <div class="volume-animation">
+        <div class="volume-ring ring-one"></div>
+        <div class="volume-ring ring-two"></div>
+
+        <div class="volume-orb">
+            <div class="volume-speaker">♪</div>
+        </div>
+
+        <div class="volume-bars">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="song-question-text">
+        <span>WHAT SONG PLAY IN MY MIND</span>
+        <strong>WHEN I SAW YOU</strong>
+    </div>
+    <button id="songQuestionNext" class="song-question-next">
+        NEXT <span>→</span>
+    </button>
+</section>
+
+
+<!-- =================================================
+     NEW SCREEN — GIRL PHOTO + ACTUAL SONG
+================================================= -->
+<section id="girlSongScreen">
+    <div class="girl-screen-glow"></div>
+
+    <div class="girl-photo-frame">
+        <div class="girl-frame-inner">
+            <img src="image/girl.png" alt="Girl" class="girl-photo">
+        </div>
+    </div>
+
+    <div class="girl-song-caption">
+        <span>♪</span> just for you <span>♪</span>
+    </div>
+
+    <div class="song-timeline">
+        <span id="songCurrentTime">0:00</span>
+        <div class="song-progress-wrap">
+            <div id="songProgress" class="song-progress"></div>
+        </div>
+        <span id="songDuration">0:00</span>
+    </div>
+
+    <button id="girlSongNext" class="girl-next-button">
+        NEXT <span>→</span>
+    </button>
+
+    <audio id="actualSong" preload="auto">
+        <source src="music/actual.mp3" type="audio/mpeg">
+    </audio>
+</section>
+
+
+<!-- =================================================
+     NEW SCREEN — DESERT WITH WIND + "5:45" / "Feeling"
+================================================= -->
+<section id="desertScreen">
+    <span class="wind-line"></span>
+    <span class="wind-line"></span>
+    <span class="wind-line"></span>
+    <span class="wind-line"></span>
+    <span class="wind-line"></span>
+
+    <div class="desert-dune dune2"></div>
+    <div class="desert-dune dune1"></div>
+
+    <div class="desert-text-wrap">
+        <div class="desert-time">5:45</div>
+        <div class="desert-feeling">Feeling</div>
+    </div>
+
+    <audio id="lastSong" loop preload="auto">
+        <source src="music/last.mp3" type="audio/mpeg">
+    </audio>
+</section>
+
+
+<!-- =================================================
+     NEW SCREEN — FINAL FULLSCREEN PHOTO
+================================================= -->
+<section id="finalPhotoScreen">
+    <img src="image/last.png" alt="Last" class="final-photo-full">
+    <div class="final-photo-overlay"></div>
+
+    <button id="finalPhotoNext" class="final-photo-next">
+        NEXT <span>→</span>
+    </button>
+</section>
+
+
+<!-- =================================================
+     NEW SCREEN — CUTE VIDEO CARD (small, not fullscreen)
+================================================= -->
+<section id="lastVideoScreen">
+    <div class="last-video-frame">
+        <div class="last-frame-inner">
+            <video id="lastVideo" class="last-video-inner" muted playsinline loop>
+                <source src="video/last.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- NEW: NEXT button — also click-to-advance; screen auto-advances after 12s -->
+    <button id="lastVideoNext" class="last-video-next">
+        NEXT <span>→</span>
+    </button>
+</section>
+
+
+<!-- =================================================
+     NEW SCREEN — FULLSCREEN "full.mp4" VIDEO
+================================================= -->
+<section id="fullVideoScreen">
+    <video id="fullVideo" class="full-video" playsinline preload="auto">
+        <source src="video/full.mp4" type="video/mp4">
+    </video>
+</section>
+
+
+<!-- =================================================
+     NEW SCREEN — WHITE SCREEN WITH "cool.png" + "rude.mp3"
+================================================= -->
+<section id="whiteScreen">
+
+    <div class="cool-image-wrap">
+        <img src="image/cool.png" alt="Cool" class="cool-image">
+    </div>
+
+    
+
+    <audio id="rudeSong" preload="auto">
+        <source src="music/rude.mp3" type="audio/mpeg">
+    </audio>
+</section>
+
+
+    <!-- =================================================
+         MUSIC
+    ================================================= -->
+
+    <audio
+        id="music"
+        loop
+        preload="auto"
+    >
+
+        <source
+            src="music/sound.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+
+
+    <!-- =================================================
+         JAVASCRIPT
+         
+    ================================================= -->
+
+
+
+    
+    
+
+
+
+
+
+
+    <script>
+
+        /* ============================= */
+/* FULLSCREEN INTRO */
+/* ============================= */
+
+const fullscreenIntro =
+    document.getElementById(
+        "fullscreenIntro"
+    );
+
+const fullscreenStart =
+    document.getElementById(
+        "fullscreenStart"
+    );
+
+const rotateScreen =
+    document.getElementById(
+        "rotateScreen"
+    );
+
+
+fullscreenStart.addEventListener(
+    "click",
+    async function () {
+
+        /* FULLSCREEN */
+
+        try {
+
+            if (
+                !document.fullscreenElement
+            ) {
+
+                await document.documentElement
+                    .requestFullscreen();
+
+            }
+
+        } catch (error) {
+
+            console.log(
+                "Fullscreen error:",
+                error
+            );
+
+        }
+
+
+        /* INTRO HIDE */
+
+        fullscreenIntro.classList.add(
+            "hide"
+        );
+
+
+        /* ROTATE SCREEN SHOW */
+
+        setTimeout(
+            function () {
+
+                rotateScreen.classList.add(
+                    "show"
+                );
+
+            },
+            700
+        );
+
+    }
+);
+
+
+/* ============================= */
+/* ROTATE SCREEN CLICK */
+/* ============================= */
+
+rotateScreen.addEventListener(
+    "click",
+    async function () {
+
+        /* Try landscape lock */
+
+        try {
+
+            if (
+                screen.orientation &&
+                screen.orientation.lock
+            ) {
+
+                await screen.orientation.lock(
+                    "landscape"
+                );
+
+            }
+
+        } catch (error) {
+
+            console.log(
+                "Landscape lock not supported:",
+                error
+            );
+
+        }
+
+
+        /* ROTATE SCREEN HIDE */
+
+        rotateScreen.classList.remove(
+            "show"
+        );
+
+
+        /* Yahan tumhari existing Screen 1
+           start hogi */
+
+        setTimeout(
+            function () {
+
+                /*
+                 * YAHAN APNI EXISTING
+                 * SCREEN 1 SHOW KARO
+                 */
+
+                console.log(
+                    "Start Screen 1"
+                );
+
+            },
+            800
+        );
+
+    }
+);
+
+
+
+
+
+
+
+
+
+
+        /* =========================================
+           ELEMENTS
+        ========================================= */
+
+        const warningPage =
+            document.getElementById(
+                "warningPage"
+            );
+
+
+        const continueButton =
+            document.getElementById(
+                "continueButton"
+            );
+
+
+        const videoPage =
+            document.getElementById(
+                "videoPage"
+            );
+
+
+        const video =
+            document.getElementById(
+                "backgroundVideo"
+            );
+
+
+        const loader =
+            document.getElementById(
+                "loader"
+            );
+
+
+        const dontClick =
+            document.getElementById(
+                "dontClick"
+            );
+
+
+        const music =
+            document.getElementById(
+                "music"
+            );
+
+
+        /* =========================================
+           SCREEN 3 ELEMENTS
+        ========================================= */
+
+        const imagePage =
+            document.getElementById(
+                "imagePage"
+            );
+
+
+        const galleryImage =
+            document.getElementById(
+                "galleryImage"
+            );
+
+
+        const nextButton =
+            document.getElementById(
+                "nextButton"
+            );
+
+
+        const observedButton =
+            document.getElementById(
+                "observedButton"
+            );
+
+
+        const imageCaption =
+            document.getElementById(
+                "imageCaption"
+            );
+
+
+
+        /* =========================================
+           IMAGE SETTINGS
+        ========================================= */
+
+        let currentImage = 1;
+
+        const totalImages = 10;
+
+
+
+        /* =========================================
+           IMAGE CAPTIONS
+        ========================================= */
+
+        const captions = [
+
+            "Click the right arrow or swipe right 👉",
+
+            "One more click 👀",
+
+            "A little more...",
+
+            "Keep going...",
+
+            "Just one more...",
+
+            "You're getting closer...",
+
+            "Don't stop now 👀",
+
+            "Almost there...",
+
+            "Last one...",
+
+            "You made it! 👑"
+
+        ];
+
+
+
+        /* =========================================
+           MUSIC VOLUME
+        ========================================= */
+
+        music.volume = 0.75;
+
+
+
+        /* =========================================
+           I'M READY CLICK
+        ========================================= */
+
+        continueButton.addEventListener(
+            "click",
+            async function() {
+
+
+                /* SCREEN 1 DISAPPEARS */
+
+                warningPage.classList.add(
+                    "hide"
+                );
+
+
+                /* SCREEN 2 APPEARS */
+
+                videoPage.classList.add(
+                    "show"
+                );
+
+
+                /* VIDEO START */
+
+                try {
+
+                    await video.play();
+
+                }
+
+                catch(error) {
+
+                    console.log(
+                        "Video error:",
+                        error
+                    );
+
+                }
+
+
+                /* MUSIC START */
+
+                try {
+
+                    await music.play();
+
+                }
+
+                catch(error) {
+
+                    console.log(
+                        "Music error:",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           VIDEO LOADED
+        ========================================= */
+
+        video.addEventListener(
+            "canplay",
+            function() {
+
+
+                /* VIDEO FADE IN */
+
+                video.classList.add(
+                    "loaded"
+                );
+
+
+                /* HIDE LOADER */
+
+                setTimeout(
+                    function() {
+
+                        loader.classList.add(
+                            "hide"
+                        );
+
+                    },
+                    900
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           DON'T CLICK
+        ========================================= */
+
+        dontClick.addEventListener(
+            "click",
+            function() {
+
+
+                /* VIDEO PAGE EXIT */
+
+                videoPage.classList.add(
+                    "exit"
+                );
+
+
+                /*
+                   Wait for video exit animation
+                   then show image page
+                */
+
+                setTimeout(
+                    function() {
+
+
+                        /* Start from image 1 */
+
+                        currentImage = 1;
+
+
+                        /* Reset image */
+
+                        galleryImage.src =
+                            "image/img1.jpg";
+
+
+                        /* Reset caption */
+
+                        imageCaption.textContent =
+                            captions[0];
+
+
+                        imageCaption.classList.remove(
+                            "hide-caption"
+                        );
+
+
+                        /* Reset image animation */
+
+                        galleryImage.classList.remove(
+                            "show-image"
+                        );
+
+
+                        /* Hide observed button */
+
+                        observedButton.classList.remove(
+                            "show"
+                        );
+
+
+                        /* Show arrow */
+
+                        nextButton.style.display =
+                            "flex";
+
+
+                        /* Show image page */
+
+                        imagePage.classList.add(
+                            "show"
+                        );
+
+
+                        /* Image fade in */
+
+                        setTimeout(
+                            function() {
+
+                                galleryImage.classList.add(
+                                    "show-image"
+                                );
+
+                            },
+                            100
+                        );
+
+
+                    },
+                    900
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           NEXT IMAGE
+        ========================================= */
+
+        nextButton.addEventListener(
+            "click",
+            function() {
+
+
+                /* Don't go beyond image 10 */
+
+                if (
+                    currentImage >= totalImages
+                ) {
+
+                    return;
+
+                }
+
+
+                /* OLD IMAGE FADE OUT */
+
+                galleryImage.classList.remove(
+                    "show-image"
+                );
+
+
+                /* Caption fade out */
+
+                imageCaption.classList.add(
+                    "hide-caption"
+                );
+
+
+                /* Wait for fade */
+
+                setTimeout(
+                    function() {
+
+
+                        /* Increase image number */
+
+                        currentImage++;
+
+
+                        /*
+                           img1.jpg
+                           img2.jpg
+                           img3.jpg
+                           ...
+                           img10.jpg
+                        */
+
+                        galleryImage.src =
+                            "image/img" +
+                            currentImage +
+                            ".jpg";
+
+
+                        /* Change caption */
+
+                        imageCaption.textContent =
+                            captions[
+                                currentImage - 1
+                            ];
+
+
+                        /* IMAGE FADE IN */
+
+                        galleryImage.classList.add(
+                            "show-image"
+                        );
+
+
+                        /* Caption fade in */
+
+                        setTimeout(
+                            function() {
+
+                                imageCaption.classList.remove(
+                                    "hide-caption"
+                                );
+
+                            },
+                            100
+                        );
+
+
+                        /* =================================
+                           LAST IMAGE
+                        ================================= */
+
+                        if (
+                            currentImage ===
+                            totalImages
+                        ) {
+
+
+                            /* Hide arrow */
+
+                            setTimeout(
+                                function() {
+
+                                    nextButton.style.display =
+                                        "none";
+
+                                },
+                                500
+                            );
+
+
+                            /*
+                               Hide caption on final image
+                            */
+
+                            setTimeout(
+                                function() {
+
+                                    imageCaption.classList.add(
+                                        "hide-caption"
+                                    );
+
+                                },
+                                700
+                            );
+
+
+                            /* Show Observed thing */
+
+                            setTimeout(
+                                function() {
+
+                                    observedButton.classList.add(
+                                        "show"
+                                    );
+
+                                },
+                                850
+                            );
+
+                        }
+
+                    },
+                    350
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           SWIPE RIGHT — MOBILE
+        ========================================= */
+
+        let touchStartX = 0;
+
+        let touchEndX = 0;
+
+
+        imagePage.addEventListener(
+            "touchstart",
+            function(event) {
+
+                touchStartX =
+                    event.changedTouches[0].screenX;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        imagePage.addEventListener(
+            "touchend",
+            function(event) {
+
+
+                touchEndX =
+                    event.changedTouches[0].screenX;
+
+
+                const swipeDistance =
+                    touchEndX - touchStartX;
+
+
+                /*
+                   Swipe RIGHT
+                */
+
+                if (
+                    swipeDistance > 50 &&
+                    currentImage < totalImages
+                ) {
+
+                    nextButton.click();
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+
+        /* =========================================
+           OBSERVED THING BUTTON
+        ========================================= */
+
+        observedButton.addEventListener(
+            "click",
+            function() {
+
+
+                /*
+                   Yahan baad mein next page/action
+                   add kar sakte ho.
+                */
+
+                console.log(
+                    "Observed thing clicked"
+                );
+
+            }
+        );
+
+        //  for screen 4
+        /* =========================================================
+   SCREEN 4 — JAVASCRIPT
+========================================================= */
+
+
+/* SCREEN 4 ELEMENTS */
+
+const gamePage =
+    document.getElementById(
+        "gamePage"
+    );
+
+
+const communication =
+    document.getElementById(
+        "communication"
+    );
+
+
+const jumpPath =
+    document.getElementById(
+        "jumpPath"
+    );
+
+
+const priyanshu =
+    document.getElementById(
+        "priyanshu"
+    );
+
+
+const loveTarget =
+    document.getElementById(
+        "loveTarget"
+    );
+
+
+const cinematicFlash =
+    document.getElementById(
+        "cinematicFlash"
+    );
+
+
+const redOverlay =
+    document.getElementById(
+        "redOverlay"
+    );
+
+
+
+const alokVideo =
+    document.getElementById(
+        "alokVideo"
+    );    
+
+
+const gameOver =
+    document.getElementById(
+        "gameOver"
+    );
+
+const healthMessage =
+    document.getElementById(
+        "healthMessage"
+    );    
+
+
+const gameNext =
+    document.getElementById(
+        "gameNext"
+    );
+
+const screen5 = document.getElementById("screen5");
+const screen5Next = document.getElementById("screen5Next");  
+
+const screen6 =
+    document.getElementById("screen6");
+
+const timeVideo =
+    document.getElementById("timeVideo");
+
+const screen6Next =
+    document.getElementById("screen6Next");
+
+const finalScreen =
+    document.getElementById("finalScreen");
+
+
+
+const okVideoPage =
+    document.getElementById("okVideoPage");
+
+const okVideo =
+    document.getElementById("okVideo");
+
+
+
+/* =========================================================
+   SCREEN 3 → SCREEN 4
+========================================================= */
+
+observedButton.addEventListener(
+    "click",
+    function () {
+
+        imagePage.classList.remove(
+            "show"
+        );
+
+
+        setTimeout(
+            function () {
+
+                gamePage.classList.add(
+                    "show"
+                );
+
+
+                startGameSequence();
+
+            },
+            700
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SCREEN 4 MAIN SEQUENCE
+========================================================= */
+
+function startGameSequence() {
+
+
+    /* RESET */
+
+    
+    alokVideo.classList.remove("show");
+
+    alokVideo.pause();
+
+    alokVideo.currentTime = 0;
+
+    alokVideo.muted = true;
+
+    alokVideo.volume = 0;
+
+    communication.classList.remove(
+        "hide"
+    );
+
+
+    jumpPath.classList.remove(
+        "show"
+    );
+
+
+    priyanshu.classList.remove(
+        "show",
+        "walk",
+        "jump",
+        "fall"
+    );
+
+
+    loveTarget.classList.remove(
+        "show",
+        "big"
+    );
+
+
+    loveTarget.style.opacity = "";
+
+
+    redOverlay.classList.remove(
+        "show"
+    );
+
+
+    gameOver.classList.remove(
+        "show"
+    );
+    healthMessage.classList.remove(
+    "show"
+    );
+
+
+    gameNext.classList.remove(
+        "show"
+    );
+
+
+    /* =====================================================
+       PRIYANSHU ENTERS FROM LEFT
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            priyanshu.classList.add(
+                "show",
+                "walk"
+            );
+
+        },
+        500
+    );
+
+
+    /* =====================================================
+       PRIYANSHU REACHES PERSON
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            priyanshu.classList.remove(
+                "walk"
+            );
+
+
+            jumpPath.classList.add(
+                "show"
+            );
+
+        },
+        6000
+    );
+
+
+    /* =====================================================
+       DIRECT JUMP TO LOVE
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            communication.classList.add(
+                "hide"
+            );
+
+
+            loveTarget.classList.add(
+                "show"
+            );
+
+
+            priyanshu.classList.add(
+                "jump"
+            );
+
+        },
+        6500
+    );
+
+
+    /* =====================================================
+       LOVE BECOMES BIG
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            loveTarget.classList.add(
+                "big"
+            );
+
+        },
+        7900
+    );
+
+
+    /* =====================================================
+       CINEMATIC SEQUENCE
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            startCinematicSequence();
+
+        },
+        8300
+    );
+
+}
+
+
+/* =========================================================
+   CINEMATIC SEQUENCE
+========================================================= */
+
+function startCinematicSequence() {
+
+
+    const shots = [
+
+        {
+            id: "shot1",
+            side: "left",
+            time: 0
+        },
+
+        {
+            id: "shot2",
+            side: "right",
+            time: 380
+        },
+
+        {
+            id: "shot3",
+            side: "left",
+            time: 760
+        },
+
+        {
+            id: "shot4",
+            side: "right",
+            time: 1140
+        },
+
+        {
+            id: "shot5",
+            side: "left",
+            time: 1520
+        }
+
+    ];
+
+
+    shots.forEach(
+        function (shot) {
+
+            setTimeout(
+                function () {
+
+
+                    const element =
+                        document.getElementById(
+                            shot.id
+                        );
+
+
+                    /* Restart animation */
+
+                    element.classList.remove(
+                        "fire-left",
+                        "fire-right"
+                    );
+
+
+                    void element.offsetWidth;
+
+
+                    /* Left / Right effect */
+
+                    if (
+                        shot.side ===
+                        "left"
+                    ) {
+
+                        element.classList.add(
+                            "fire-left"
+                        );
+
+                    }
+                    else {
+
+                        element.classList.add(
+                            "fire-right"
+                        );
+
+                    }
+
+
+                    /* Flash */
+
+                    cinematicFlash.classList.remove(
+                        "fire"
+                    );
+
+
+                    void cinematicFlash.offsetWidth;
+
+
+                    cinematicFlash.classList.add(
+                        "fire"
+                    );
+
+
+                    /* Screen shake */
+
+                    gamePage.classList.remove(
+                        "shake"
+                    );
+
+
+                    void gamePage.offsetWidth;
+
+
+                    gamePage.classList.add(
+                        "shake"
+                    );
+
+                },
+                shot.time
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       PRIYANSHU FALLS
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            loveTarget.style.opacity =
+                "0";
+
+
+            priyanshu.classList.add(
+                "fall"
+            );
+
+        },
+        1850
+    );
+
+/* =====================================================
+   ALOK VIDEO
+===================================================== */
+
+setTimeout(
+    async function () {
+
+        /* Red overlay hatao */
+
+        redOverlay.classList.remove(
+            "show"
+        );
+
+
+        /* Video reset */
+
+        alokVideo.currentTime = 0;
+
+
+        /* Video ka sound completely OFF */
+
+        alokVideo.muted = true;
+
+        alokVideo.volume = 0;
+
+
+        /* Video show */
+
+        alokVideo.classList.add(
+            "show"
+        );
+
+
+        /* Video play */
+
+        try {
+
+            await alokVideo.play();
+
+        }
+
+        catch(error) {
+
+            console.log(
+                "Alok video error:",
+                error
+            );
+
+        }
+
+    },
+    2450
+);
+
+    /* =====================================================
+       GAME OVER
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            gameOver.classList.add(
+                "show"
+            );
+
+        },
+        3300
+    );
+
+    /* =====================================================
+   FUNNY HEALTH MESSAGE
+===================================================== */
+
+setTimeout(
+    function () {
+
+        healthMessage.classList.add(
+            "show"
+        );
+
+    },
+    3700
+);
+
+
+    /* =====================================================
+       NEXT BUTTON
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            gameNext.classList.add(
+                "show"
+            );
+
+        },
+        4400
+    );
+
+}
+
+
+/* =========================================================
+   SCREEN 4 → OK VIDEO → SCREEN 5
+========================================================= */
+
+gameNext.addEventListener("click", async function () {
+
+    screen5Music.load();
+
+screen5Music.play()
+    .then(function () {
+
+        screen5Music.pause();
+        screen5Music.currentTime = 0;
+
+    })
+    .catch(function (error) {
+
+        console.log(
+            "Screen 5 audio unlock error:",
+            error
+        );
+
+    });
+
+    console.log("Screen 4 Next clicked");
+
+
+    /* =========================================
+       SCREEN 4 MUSIC FADE OUT
+    ========================================= */
+
+    const fadeDuration = 1800;
+    const fadeSteps = 30;
+
+    const startingVolume = music.volume;
+    const volumeStep =
+        startingVolume / fadeSteps;
+
+    const fadeInterval =
+        fadeDuration / fadeSteps;
+
+    let currentStep = 0;
+
+    const musicFade =
+        setInterval(function () {
+
+            currentStep++;
+
+            music.volume = Math.max(
+                0,
+                startingVolume -
+                (volumeStep * currentStep)
+            );
+
+            if (currentStep >= fadeSteps) {
+
+                clearInterval(musicFade);
+
+                music.pause();
+                music.currentTime = 0;
+                music.volume = 0;
+            }
+
+        }, fadeInterval);
+
+
+    /* =========================================
+       SCREEN 4 HIDE
+    ========================================= */
+
+    gamePage.classList.remove("show");
+
+
+    /* =========================================
+       OK VIDEO SCREEN SHOW
+    ========================================= */
+
+    setTimeout(function () {
+
+        okVideoPage.classList.add("show");
+
+
+        /* Video reset */
+
+        okVideo.pause();
+        okVideo.currentTime = 0;
+
+
+        /*
+         * IMPORTANT:
+         * Video muted nahi hai.
+         * Isliye original audio play hoga.
+         */
+
+        okVideo.muted = false;
+        okVideo.volume = 1;
+
+
+        /* =====================================
+           PLAY OK.MP4
+        ===================================== */
+
+        okVideo.play()
+            .then(function () {
+
+                console.log(
+                    "ok.mp4 started with audio"
+                );
+
+            })
+            .catch(function (error) {
+
+                console.log(
+                    "ok.mp4 autoplay/audio error:",
+                    error
+                );
+
+            });
+
+    }, 700);
+
+});
+
+/* =========================================================
+   OK VIDEO FINISHED → SCREEN 5
+========================================================= */
+
+okVideo.addEventListener(
+    "ended",
+    function () {
+
+        console.log(
+            "ok.mp4 finished"
+        );
+
+
+        /* =====================================
+           OK VIDEO FADE OUT
+        ===================================== */
+
+        okVideoPage.classList.remove(
+            "show"
+        );
+
+
+        /* =====================================
+           SCREEN 5
+        ===================================== */
+
+       setTimeout(
+    function () {
+
+        showScreen5();
+
+    },
+    1000
+);
+    }
+);
+
+
+/* =========================================================
+   SCREEN 5 → SCREEN 6 → FINAL
+========================================================= */
+
+
+/* =========================================
+   SCREEN 5 MUSIC — sound3.mp3
+========================================= */
+
+const screen5Music = new Audio("music/sound3.mp3");
+
+screen5Music.preload = "auto";
+screen5Music.volume = 0.85;
+screen5Music.loop = true;
+
+
+/* =========================================
+   SCREEN 5 SHOW
+========================================= */
+
+function showScreen5() {
+
+    /* Screen 5 show */
+    screen5.style.display = "flex";
+    screen5.style.opacity = "1";
+
+    /*
+     * Screen 5 ka animation fresh start
+     */
+
+    const imageWrap =
+        document.querySelector(".screen5-image-wrap");
+
+    if (imageWrap) {
+
+        imageWrap.style.animation = "none";
+
+        void imageWrap.offsetWidth;
+
+        imageWrap.style.animation =
+            "screen5ImageReveal 2.3s cubic-bezier(.16,1,.3,1) .3s forwards";
+    }
+
+
+    /*
+     * sound3.mp3 play
+     */
+
+    screen5Music.currentTime = 0;
+screen5Music.volume = 0.85;
+screen5Music.muted = false;
+
+const playMusic = screen5Music.play();
+
+if (playMusic !== undefined) {
+
+    playMusic
+        .then(function () {
+
+            console.log(
+                "sound3.mp3 PLAYING"
+            );
+
+        })
+        .catch(function (error) {
+
+            console.log(
+                "sound3.mp3 ERROR:",
+                error
+            );
+
+        });
+
+}
+
+    /*
+     * NEXT button
+     */
+
+    setTimeout(function () {
+
+        screen5Next.classList.add("show");
+
+    }, 1800);
+
+}
+
+
+
+/* =========================================
+   SCREEN 5 NEXT → SCREEN 6
+========================================= */
+
+screen5Next.addEventListener(
+    "click",
+    function () {
+
+        
+
+        console.log(
+            "Screen 5 Next clicked"
+        );
+
+
+        /*
+         * sound3.mp3 stop
+         */
+
+        
+
+        /*
+         * Screen 5 hide
+         */
+
+        screen5.style.opacity = "0";
+
+
+        setTimeout(function () {
+
+            screen5.style.display = "none";
+            screen5.style.opacity = "";
+
+
+            /*
+             * SCREEN 6 SHOW
+             */
+
+            screen6.style.display = "flex";
+
+
+            /*
+             * Video reset
+             */
+
+            timeVideo.pause();
+
+            timeVideo.currentTime = 0;
+
+
+            /*
+             * IMPORTANT:
+             * time.mp4 completely muted
+             */
+
+            timeVideo.muted = true;
+            timeVideo.volume = 0;
+
+
+            /*
+             * Video play
+             */
+
+            timeVideo.play()
+                .then(function () {
+
+                    console.log(
+                        "time.mp4 started muted"
+                    );
+
+                })
+                .catch(function (error) {
+
+                    console.log(
+                        "time.mp4 error:",
+                        error
+                    );
+
+                });
+
+
+        }, 900);
+
+    }
+);
+
+
+
+/* =========================================
+   SCREEN 6 NEXT → FINAL SCREEN
+========================================= */
+
+screen6Next.addEventListener(
+    "click",
+    function () {
+
+        console.log(
+            "Screen 6 Next clicked"
+        );
+
+
+        /*
+         * Stop time video
+         */
+
+        timeVideo.pause();
+
+        timeVideo.currentTime = 0;
+
+
+        /*
+         * Screen 6 fade to black
+         */
+
+        screen6.style.transition =
+            "opacity 1.8s ease";
+
+        screen6.style.opacity = "0";
+
+
+        /*
+         * Wait for black fade
+         */
+
+        setTimeout(function () {
+
+            screen6.style.display = "none";
+
+
+            /*
+             * FINAL SCREEN
+             */
+
+            finalScreen.style.display =
+                "flex";
+
+
+            /*
+             * Show final screen
+             */
+
+            finalScreen.style.opacity = "1";
+
+
+            /*
+             * Force animation refresh
+             */
+
+            const finalWord =
+                document.querySelector(
+                    ".final-word"
+                );
+
+            const rose =
+                document.querySelector(
+                    ".rose"
+                );
+
+
+            if (finalWord) {
+
+                finalWord.style.animation =
+                    "none";
+
+                void finalWord.offsetWidth;
+
+                finalWord.style.animation =
+                    "khairReveal 2s cubic-bezier(.16,1,.3,1) .3s forwards";
+            }
+
+
+            if (rose) {
+
+                rose.style.animation =
+                    "none";
+
+                void rose.offsetWidth;
+
+                rose.style.animation =
+                    "roseReveal 1.5s cubic-bezier(.16,1,.3,1) 1.2s forwards";
+            }
+
+
+            /*
+             * Black screen smoothly appears
+             */
+
+            requestAnimationFrame(function () {
+
+                finalScreen.classList.add(
+                    "show"
+                );
+
+            });
+
+
+        }, 1800);
+
+    }
+);
+
+
+
+
+/* =================================================
+   NEW: KHAIR → VOLUME → GIRL PHOTO
+================================================= */
+(function () {
+    const khairNext = document.getElementById("khairNext");
+    const songQuestionScreen = document.getElementById("songQuestionScreen");
+    const girlSongScreen = document.getElementById("girlSongScreen");
+    const actualSong = document.getElementById("actualSong");
+    const girlSongNext = document.getElementById("girlSongNext");
+    const songQuestionNext = document.getElementById("songQuestionNext");
+    const desertScreen = document.getElementById("desertScreen");
+    const lastSong = document.getElementById("lastSong");
+    const finalPhotoScreen = document.getElementById("finalPhotoScreen");
+    const finalPhotoNext = document.getElementById("finalPhotoNext");
+    const lastVideoScreen = document.getElementById("lastVideoScreen");
+    const lastVideo = document.getElementById("lastVideo");
+    const lastVideoNext = document.getElementById("lastVideoNext");
+    const fullVideoScreen = document.getElementById("fullVideoScreen");
+    const fullVideo = document.getElementById("fullVideo");
+    const whiteScreen = document.getElementById("whiteScreen");
+    const rudeSong = document.getElementById("rudeSong");
+    const coolProgress = document.getElementById("coolProgress");
+    const coolCurrentTime = document.getElementById("coolCurrentTime");
+    const coolDuration = document.getElementById("coolDuration");
+    let questionTransitionTimer = null;
+    let questionTransitionDone = false;
+    let lastVideoTransitionTimer = null;
+    let lastVideoTransitionDone = false;
+
+    if (!khairNext || !songQuestionScreen || !girlSongScreen || !actualSong || !girlSongNext) {
+        return;
+    }
+
+    khairNext.addEventListener("click", function () {
+
+        /* Stop the previous song completely before the new screen. */
+        if (typeof music !== "undefined") {
+            music.pause();
+            music.currentTime = 0;
+            music.volume = 0;
+        }
+
+        if (typeof screen5Music !== "undefined") {
+            screen5Music.pause();
+            screen5Music.currentTime = 0;
+        }
+
+        if (typeof timeVideo !== "undefined") {
+            timeVideo.pause();
+        }
+
+        /* Existing Khair screen only fades out. */
+        finalScreen.style.opacity = "0";
+
+        setTimeout(function () {
+
+            finalScreen.style.display = "none";
+
+            /* Show volume animation screen. */
+            songQuestionScreen.style.display = "flex";
+            songQuestionScreen.classList.remove("show");
+
+            void songQuestionScreen.offsetWidth;
+
+            songQuestionScreen.classList.add("show");
+
+            /* 5 seconds later → girl screen. */
+            /* 10 seconds later → girl screen. */
+            questionTransitionTimer = setTimeout(function () {
+                goToGirlSongScreen();
+            }, 10000);
+
+        }, 700);
+    });
+
+
+    function goToGirlSongScreen() {
+        if (questionTransitionDone) return;
+        questionTransitionDone = true;
+
+        if (questionTransitionTimer) {
+            clearTimeout(questionTransitionTimer);
+        }
+
+        songQuestionScreen.classList.remove("show");
+
+        setTimeout(function () {
+            songQuestionScreen.style.display = "none";
+            girlSongScreen.style.display = "flex";
+            girlSongScreen.classList.remove("show");
+
+            void girlSongScreen.offsetWidth;
+            girlSongScreen.classList.add("show");
+
+            actualSong.pause();
+            actualSong.currentTime = 0;
+            actualSong.loop = false;
+            actualSong.volume = 1;
+
+            const playPromise = actualSong.play();
+            if (playPromise) {
+                playPromise.catch(function (error) {
+                    console.log("actual.mp3 error:", error);
+                });
+            }
+        }, 850);
+    }
+
+    songQuestionNext.addEventListener("click", function () {
+        goToGirlSongScreen();
+    });
+
+    /* Song finished → NEXT button appears. */
+    actualSong.addEventListener("ended", function () {
+        girlSongNext.classList.add("show");
+    });
+
+
+    const songProgress = document.getElementById("songProgress");
+    const songCurrentTime = document.getElementById("songCurrentTime");
+    const songDuration = document.getElementById("songDuration");
+
+    function formatSongTime(seconds) {
+        if (!isFinite(seconds) || seconds < 0) return "0:00";
+        const minutes = Math.floor(seconds / 60);
+        const secondsLeft = Math.floor(seconds % 60);
+        return minutes + ":" + String(secondsLeft).padStart(2, "0");
+    }
+
+    actualSong.addEventListener("loadedmetadata", function () {
+        songDuration.textContent = formatSongTime(actualSong.duration);
+    });
+
+    actualSong.addEventListener("timeupdate", function () {
+        if (!isFinite(actualSong.duration) || actualSong.duration <= 0) return;
+
+        const percent = (actualSong.currentTime / actualSong.duration) * 100;
+        songProgress.style.width = percent + "%";
+        songCurrentTime.textContent = formatSongTime(actualSong.currentTime);
+        songDuration.textContent = formatSongTime(actualSong.duration);
+    });
+
+    /* girlSongNext now leads into the new desert (5:45 / Feeling) screen. */
+    girlSongNext.addEventListener("click", function () {
+        actualSong.pause();
+        actualSong.currentTime = 0;
+
+        goToDesertScreen();
+    });
+
+
+    /* =================================================
+       NEW: GIRL SONG -> DESERT (5:45 / Feeling) -> FINAL PHOTO
+    ================================================= */
+    function goToDesertScreen() {
+
+        if (!desertScreen || !lastSong) return;
+
+        girlSongScreen.classList.remove("show");
+
+        setTimeout(function () {
+
+            girlSongScreen.style.display = "none";
+
+            desertScreen.style.display = "flex";
+            desertScreen.classList.remove("show");
+
+            void desertScreen.offsetWidth;
+
+            desertScreen.classList.add("show");
+
+            /*
+             * last.mp3 play
+             */
+
+            lastSong.pause();
+            lastSong.currentTime = 0;
+            lastSong.volume = 1;
+
+            const desertPlayPromise = lastSong.play();
+
+            if (desertPlayPromise) {
+                desertPlayPromise.catch(function (error) {
+                    console.log("last.mp3 error:", error);
+                });
+            }
+
+            /*
+             * Wait a bit so the text can be read,
+             * then move on to the final photo screen.
+             */
+
+            setTimeout(function () {
+
+                goToFinalPhotoScreen();
+
+            }, 6000);
+
+        }, 850);
+    }
+
+
+    function goToFinalPhotoScreen() {
+
+        if (!finalPhotoScreen) return;
+
+        desertScreen.classList.remove("show");
+
+        setTimeout(function () {
+
+            desertScreen.style.display = "none";
+
+            /*
+             * last.mp3 keeps playing on the final photo screen too.
+             */
+
+            finalPhotoScreen.style.display = "flex";
+            finalPhotoScreen.classList.remove("show");
+
+            void finalPhotoScreen.offsetWidth;
+
+            finalPhotoScreen.classList.add("show");
+
+        }, 850);
+    }
+
+
+    /* Final NEXT button -> stop other music, keep last.mp3 playing, go to cute video card. */
+    if (finalPhotoNext) {
+        finalPhotoNext.addEventListener("click", function () {
+
+            /* Stop every other music / video audio before moving on. */
+            const bgMusic = document.getElementById("music");
+            if (bgMusic) {
+                bgMusic.pause();
+                bgMusic.currentTime = 0;
+            }
+
+            if (typeof screen5Music !== "undefined") {
+                screen5Music.pause();
+                screen5Music.currentTime = 0;
+            }
+
+            if (typeof timeVideo !== "undefined") {
+                timeVideo.pause();
+            }
+
+            actualSong.pause();
+            actualSong.currentTime = 0;
+
+            /* last.mp3 is left playing on purpose. */
+
+            goToLastVideoScreen();
+        });
+    }
+
+
+    function goToLastVideoScreen() {
+
+        if (!lastVideoScreen || !lastVideo) return;
+
+        finalPhotoScreen.classList.remove("show");
+
+        setTimeout(function () {
+
+            finalPhotoScreen.style.display = "none";
+
+            lastVideoScreen.style.display = "flex";
+            lastVideoScreen.classList.remove("show");
+
+            void lastVideoScreen.offsetWidth;
+
+            lastVideoScreen.classList.add("show");
+
+            /*
+             * video plays muted, last.mp3 keeps playing in the background
+             */
+
+            lastVideo.pause();
+            lastVideo.currentTime = 0;
+            lastVideo.muted = true;
+            lastVideo.volume = 0;
+
+            const lastVideoPlayPromise = lastVideo.play();
+
+            if (lastVideoPlayPromise) {
+                lastVideoPlayPromise.catch(function (error) {
+                    console.log("video error:", error);
+                });
+            }
+
+            /*
+             * NEW: this screen only stays for 12 seconds.
+             * Clicking NEXT goes forward immediately too.
+             */
+
+            lastVideoTransitionDone = false;
+
+            lastVideoTransitionTimer = setTimeout(function () {
+
+                goToFullVideoScreen();
+
+            }, 12000);
+
+        }, 850);
+    }
+
+
+    /* =================================================
+       NEW: LAST VIDEO CARD (12s / NEXT) -> FULLSCREEN "full.mp4"
+    ================================================= */
+
+    function goToFullVideoScreen() {
+
+        if (lastVideoTransitionDone) return;
+        lastVideoTransitionDone = true;
+
+        if (lastVideoTransitionTimer) {
+            clearTimeout(lastVideoTransitionTimer);
+        }
+
+        if (!fullVideoScreen || !fullVideo) return;
+
+        /* Stop every other music / video before moving on. */
+
+        const bgMusic = document.getElementById("music");
+        if (bgMusic) {
+            bgMusic.pause();
+            bgMusic.currentTime = 0;
+        }
+
+        if (typeof screen5Music !== "undefined") {
+            screen5Music.pause();
+            screen5Music.currentTime = 0;
+        }
+
+        actualSong.pause();
+        actualSong.currentTime = 0;
+
+        if (lastSong) {
+            lastSong.pause();
+            lastSong.currentTime = 0;
+        }
+
+        lastVideo.pause();
+
+        lastVideoScreen.classList.remove("show");
+
+        setTimeout(function () {
+
+            lastVideoScreen.style.display = "none";
+
+            fullVideoScreen.style.display = "flex";
+            fullVideoScreen.classList.remove("show");
+
+            void fullVideoScreen.offsetWidth;
+
+            fullVideoScreen.classList.add("show");
+
+            /*
+             * full.mp4 plays fullscreen with its own audio (not muted).
+             */
+
+            fullVideo.pause();
+            fullVideo.currentTime = 0;
+            fullVideo.muted = false;
+            fullVideo.volume = 1;
+
+            const fullVideoPlayPromise = fullVideo.play();
+
+            if (fullVideoPlayPromise) {
+                fullVideoPlayPromise.catch(function (error) {
+                    console.log("full.mp4 error:", error);
+                });
+            }
+
+        }, 850);
+    }
+
+    if (lastVideoNext) {
+        lastVideoNext.addEventListener("click", function () {
+            goToFullVideoScreen();
+        });
+    }
+
+
+    /* =================================================
+       NEW: "full.mp4" ENDED -> WHITE SCREEN WITH cool.png + rude.mp3
+    ================================================= */
+
+    if (fullVideo) {
+        fullVideo.addEventListener("ended", function () {
+            goToWhiteScreen();
+        });
+    }
+
+    function goToWhiteScreen() {
+
+        if (!whiteScreen || !rudeSong) return;
+
+        fullVideoScreen.classList.remove("show");
+
+        setTimeout(function () {
+
+            fullVideo.pause();
+
+            fullVideoScreen.style.display = "none";
+
+            whiteScreen.style.display = "flex";
+            whiteScreen.classList.remove("show");
+
+            void whiteScreen.offsetWidth;
+
+            whiteScreen.classList.add("show");
+
+            rudeSong.pause();
+            rudeSong.currentTime = 0;
+            rudeSong.volume = 1;
+
+            const rudePlayPromise = rudeSong.play();
+
+            if (rudePlayPromise) {
+                rudePlayPromise.catch(function (error) {
+                    console.log("rude.mp3 error:", error);
+                });
+            }
+
+        }, 850);
+    }
+
+
+    /*
+     * White screen timeline — shows how much of
+     * rude.mp3 is left / played.
+     */
+
+    function formatCoolTime(seconds) {
+        if (!isFinite(seconds) || seconds < 0) return "0:00";
+        const minutes = Math.floor(seconds / 60);
+        const secondsLeft = Math.floor(seconds % 60);
+        return minutes + ":" + String(secondsLeft).padStart(2, "0");
+    }
+
+    if (rudeSong) {
+
+        rudeSong.addEventListener("loadedmetadata", function () {
+            coolDuration.textContent = formatCoolTime(rudeSong.duration);
+        });
+
+        rudeSong.addEventListener("timeupdate", function () {
+            if (!isFinite(rudeSong.duration) || rudeSong.duration <= 0) return;
+
+            const percent = (rudeSong.currentTime / rudeSong.duration) * 100;
+            coolProgress.style.width = percent + "%";
+            coolCurrentTime.textContent = formatCoolTime(rudeSong.currentTime);
+            coolDuration.textContent = formatCoolTime(rudeSong.duration);
+        });
+    }
+
+})();
+
+</script>
+
+
+</body>
+
+</html>
